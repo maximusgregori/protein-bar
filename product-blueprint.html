@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Blueprint v1.0 — Protein Bar Blueprint</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --black: #111;
+    --white: #fff;
+    --bg: #f6f5f0;
+    --green: #3d6b35;
+    --green-light: #eaf2e7;
+    --green-mid: #7ba83e;
+    --gold: #b8943a;
+    --gold-light: #fdf8ec;
+    --red: #c44;
+    --red-light: #fdf0f0;
+    --gray-100: #fafaf8;
+    --gray-200: #eee;
+    --gray-300: #ddd;
+    --gray-400: #999;
+    --gray-500: #777;
+    --gray-600: #555;
+    --gray-700: #333;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--black);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* =============================================
+     COVER / HERO
+     ============================================= */
+  .cover {
+    background: var(--black);
+    color: var(--white);
+    padding: 80px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(61,107,53,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 30%, rgba(184,148,58,0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .cover-badge {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.25);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .cover h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .cover .tagline {
+    font-size: 17px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.55);
+    max-width: 600px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+
+  .cover-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .cover-stat {
+    text-align: center;
+  }
+
+  .cover-stat .cs-value {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 32px;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  .cover-stat .cs-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 2px;
+  }
+
+  /* =============================================
+     NAVIGATION / TOC
+     ============================================= */
+  .toc {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 1px solid var(--gray-300);
+  }
+
+  .toc a {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: all 0.15s;
+  }
+
+  .toc a:hover {
+    color: var(--black);
+    background: rgba(0,0,0,0.04);
+  }
+
+  /* =============================================
+     MAIN CONTAINER & SECTIONS
+     ============================================= */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .section {
+    padding: 48px 0;
+    border-bottom: 1px solid var(--gray-300);
+  }
+
+  .section:last-child {
+    border-bottom: none;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+
+  .section h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+
+  .section h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 28px 0 12px 0;
+  }
+
+  .section p {
+    font-size: 15px;
+    color: var(--gray-700);
+    margin-bottom: 14px;
+    line-height: 1.7;
+  }
+
+  /* =============================================
+     FRONT-OF-PACKAGE MOCKUP
+     ============================================= */
+  .fop-mockup {
+    background: var(--black);
+    color: var(--white);
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+    margin: 24px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fop-mockup::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 120%, rgba(61,107,53,0.2), transparent 60%);
+    pointer-events: none;
+  }
+
+  .fop-brand {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 12px;
+  }
+
+  .fop-product {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 26px;
+    margin-bottom: 16px;
+  }
+
+  .fop-claims {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .fop-glp1 {
+    display: inline-block;
+    border: 1px solid var(--green);
+    color: #7dba6e;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin: 8px 0;
+  }
+
+  .fop-micro {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+  }
+
+  .fop-ingredients {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    margin-top: 12px;
+  }
+
+  /* =============================================
+     TABLES
+     ============================================= */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 16px 0;
+  }
+
+  table th {
+    background: var(--black);
+    color: var(--white);
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  table th.right { text-align: right; }
+
+  table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--gray-200);
+    vertical-align: top;
+  }
+
+  table td.right {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  table tr:nth-child(even) td {
+    background: var(--gray-100);
+  }
+
+  table .highlight-row td {
+    background: var(--green-light);
+    font-weight: 600;
+    border-top: 2px solid var(--green);
+    border-bottom: 2px solid var(--green);
+  }
+
+  table .total-row td {
+    font-weight: 700;
+    background: #f0f0ec;
+    border-top: 2px solid var(--black);
+  }
+
+  /* Winner cell */
+  .win {
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  .lose {
+    color: var(--red);
+  }
+
+  /* =============================================
+     FDA NUTRITION FACTS LABEL
+     ============================================= */
+  .nf-wrapper {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .nf-label {
+    border: 2px solid var(--black);
+    padding: 4px;
+    width: 310px;
+    flex-shrink: 0;
+    font-family: 'DM Sans', Helvetica, sans-serif;
+    background: white;
+  }
+
+  .nf-label .nf-title {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1;
+    padding: 0 0 2px 0;
+  }
+
+  .nf-label .nf-serving-header {
+    border-bottom: 8px solid var(--black);
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+  }
+
+  .nf-label .nf-serving-size {
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .nf-label .nf-serving-detail {
+    font-size: 13px;
+  }
+
+  .nf-calories-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 4px solid var(--black);
+    padding: 4px 0;
+  }
+
+  .nf-calories-label {
+    font-size: 13px;
+    font-weight: 900;
+  }
+
+  .nf-calories-value {
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .nf-dv-header {
+    text-align: right;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 0;
+    border-bottom: 1px solid var(--black);
+  }
+
+  .nf-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 0;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 13px;
+  }
+
+  .nf-row.thick-bottom {
+    border-bottom: 8px solid var(--black);
+  }
+
+  .nf-row.med-bottom {
+    border-bottom: 4px solid var(--black);
+  }
+
+  .nf-row .nf-name { font-weight: 700; }
+  .nf-row .nf-name.indent1 { padding-left: 20px; font-weight: 400; }
+  .nf-row .nf-name.indent2 { padding-left: 40px; font-weight: 400; }
+  .nf-row .nf-dv { font-weight: 700; }
+
+  .nf-vitamin-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 0;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 13px;
+  }
+
+  .nf-footnote {
+    font-size: 10px;
+    padding: 4px 0 0 0;
+    line-height: 1.4;
+  }
+
+  .nf-caffeine-note {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 0 2px 0;
+    border-top: 4px solid var(--black);
+    margin-top: 4px;
+  }
+
+  .nf-sidebar {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  /* Micro Bars */
+  .micro-bar-container { margin: 8px 0; }
+
+  .micro-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  .micro-bar-track {
+    height: 22px;
+    background: #e8e8e4;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .micro-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    min-width: 40px;
+  }
+
+  .micro-bar-fill.excellent { background: var(--green); }
+  .micro-bar-fill.good { background: var(--green-mid); }
+  .micro-bar-fill.fair { background: var(--gold); }
+
+  /* =============================================
+     CLAIMS GRID
+     ============================================= */
+  .claims-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 16px 0;
+  }
+
+  .claim-box {
+    border: 1px solid #c8d9c2;
+    border-radius: 8px;
+    padding: 14px;
+    background: var(--green-light);
+  }
+
+  .claim-box .claim-type {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--green);
+    margin-bottom: 2px;
+  }
+
+  .claim-box .claim-nutrient {
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  .claim-box .claim-detail {
+    font-size: 12px;
+    color: var(--gray-600);
+    margin-top: 2px;
+  }
+
+  /* =============================================
+     INGREDIENT LABEL
+     ============================================= */
+  .ingredient-label {
+    background: white;
+    border: 2px solid var(--black);
+    padding: 20px;
+    margin: 16px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .ingredient-label .il-title {
+    font-weight: 900;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .ingredient-label .il-allergen {
+    font-weight: 700;
+    margin-top: 12px;
+    font-size: 13px;
+  }
+
+  .ingredient-label .il-caffeine {
+    margin-top: 12px;
+    font-size: 12px;
+    font-style: italic;
+    color: var(--gray-600);
+  }
+
+  /* =============================================
+     COMPETITOR CARDS
+     ============================================= */
+  .comp-card {
+    background: white;
+    border: 1px solid var(--gray-300);
+    border-radius: 10px;
+    padding: 24px;
+    margin: 16px 0;
+    position: relative;
+  }
+
+  .comp-card::before {
+    content: attr(data-rank);
+    position: absolute;
+    top: -1px;
+    right: 20px;
+    background: var(--black);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 0 0 6px 6px;
+  }
+
+  .comp-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .comp-card-name {
+    font-size: 20px;
+    font-weight: 800;
+  }
+
+  .comp-card-sub {
+    font-size: 13px;
+    color: var(--gray-500);
+  }
+
+  .comp-card-stats {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+
+  .comp-card-stat {
+    text-align: center;
+    min-width: 70px;
+  }
+
+  .comp-card-stat .ccs-value {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .comp-card-stat .ccs-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--gray-500);
+  }
+
+  .comp-verdict {
+    font-size: 14px;
+    color: var(--gray-700);
+    padding-top: 12px;
+    border-top: 1px solid var(--gray-200);
+    line-height: 1.65;
+  }
+
+  .comp-verdict strong { color: var(--black); }
+
+  .comp-weakness {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--red-light);
+    color: var(--red);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 2px 2px 2px 0;
+  }
+
+  .comp-strength {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--green-light);
+    color: var(--green);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 2px 2px 2px 0;
+  }
+
+  /* =============================================
+     RECIPE SECTION
+     ============================================= */
+  .yield-box {
+    display: flex;
+    gap: 0;
+    background: white;
+    border: 2px solid var(--black);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 20px 0;
+  }
+
+  .yield-item {
+    flex: 1;
+    text-align: center;
+    padding: 16px 12px;
+    border-right: 1px solid var(--gray-200);
+  }
+
+  .yield-item:last-child { border-right: none; }
+
+  .yield-item .yi-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray-500);
+    margin-bottom: 2px;
+  }
+
+  .yield-item .yi-value {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 24px;
+  }
+
+  .yield-item .yi-note {
+    font-size: 12px;
+    color: var(--gray-500);
+  }
+
+  .ingredient-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 16px 0;
+    background: white;
+  }
+
+  .ing-item {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  .ing-item:nth-child(odd) { border-right: 1px solid var(--gray-200); }
+
+  .ing-item .ing-name { font-weight: 600; }
+
+  .ing-item .ing-amount {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--gray-600);
+    white-space: nowrap;
+  }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding: 16px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid var(--gray-200);
+  }
+
+  .step-num {
+    flex: 0 0 34px;
+    height: 34px;
+    background: var(--black);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+  }
+
+  .step-content { flex: 1; }
+
+  .step-title {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+
+  .step-detail {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  .step-time {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gray-400);
+    margin-top: 4px;
+  }
+
+  /* =============================================
+     CALLOUT BOXES
+     ============================================= */
+  .tip-box {
+    background: var(--gold-light);
+    border-left: 4px solid var(--gold);
+    padding: 14px 18px;
+    margin: 16px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .tip-box strong { color: #8a6d1b; }
+
+  .green-box {
+    background: var(--green-light);
+    border-left: 4px solid var(--green);
+    padding: 14px 18px;
+    margin: 16px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .warn-box {
+    background: var(--red-light);
+    border-left: 4px solid var(--red);
+    padding: 14px 18px;
+    margin: 16px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* Evaluate grid */
+  .eval-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 12px 0;
+  }
+
+  .eval-card {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 14px;
+  }
+
+  .eval-card .ec-title {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .eval-card .ec-body {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.55;
+  }
+
+  /* Shopping table */
+  .shop-table td, .shop-table th { font-size: 13px; }
+
+  /* =============================================
+     FOOTER
+     ============================================= */
+  .footer {
+    text-align: center;
+    padding: 40px;
+    font-size: 12px;
+    color: var(--gray-400);
+    line-height: 1.6;
+  }
+
+  /* =============================================
+     PRINT
+     ============================================= */
+  @media print {
+    .cover { padding: 40px 20px 30px; }
+    .section { page-break-inside: avoid; }
+    .toc { display: none; }
+    body { background: white; }
+  }
+
+  @media (max-width: 700px) {
+    .cover { padding: 48px 20px 40px; }
+    .cover-stats { gap: 24px; }
+    .container { padding: 0 20px; }
+    .nf-wrapper { flex-direction: column; }
+    .claims-grid { grid-template-columns: 1fr; }
+    .ingredient-grid { grid-template-columns: 1fr; }
+    .ing-item:nth-child(odd) { border-right: none; }
+    .yield-box { flex-wrap: wrap; }
+    .yield-item { flex: 1 1 33%; }
+    .eval-grid { grid-template-columns: 1fr; }
+    .comp-card-stats { gap: 12px; }
+    .toc { padding: 20px; }
+  }
+
+  /* =============================================
+     SITE-WIDE NAVIGATION
+     ============================================= */
+  .site-nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-300);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .site-nav-brand {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 16px;
+    color: var(--black);
+    text-decoration: none;
+    padding: 14px 0;
+    white-space: nowrap;
+  }
+
+  .site-nav-brand:hover {
+    color: var(--green);
+  }
+
+  .site-nav-links {
+    display: flex;
+    gap: 0;
+  }
+
+  .site-nav-links a {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    text-decoration: none;
+    padding: 16px 16px;
+    transition: all 0.15s;
+    border-bottom: 2px solid transparent;
+  }
+
+  .site-nav-links a:hover {
+    color: var(--black);
+    background: rgba(0,0,0,0.02);
+  }
+
+  .site-nav-links a.active {
+    color: var(--green);
+    border-bottom-color: var(--green);
+  }
+
+  @media (max-width: 700px) {
+    .site-nav {
+      padding: 0 16px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .site-nav-brand {
+      padding: 12px 0 4px;
+    }
+    .site-nav-links {
+      width: 100%;
+      padding-bottom: 4px;
+    }
+    .site-nav-links a {
+      padding: 8px 12px;
+      font-size: 11px;
+    }
+  }
+
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html" class="site-nav-brand">Protein Bar Blueprint</a>
+  <div class="site-nav-links">
+    <a href="product-blueprint.html" class="active">Product Blueprint v1.0</a>
+    <a href="manufacturing-roadmap.html">Manufacturing Roadmap</a>
+  </div>
+</nav>
+
+
+<!-- ========================================
+     COVER
+     ======================================== -->
+<div class="cover">
+  <div class="cover-badge">Product Blueprint v1.0</div>
+  <h1>Dark Chocolate Tahini Bar</h1>
+  <div class="tagline">The first GLP-1-optimized, caffeinated, clean-label protein bar. Designed for the 12M+ Americans on weight loss medications who need every calorie to count.</div>
+  <div class="cover-stats">
+    <div class="cover-stat">
+      <div class="cs-value">18g</div>
+      <div class="cs-label">Protein</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cs-value">80mg</div>
+      <div class="cs-label">Caffeine</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cs-value">0g</div>
+      <div class="cs-label">Added Sugar</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cs-value">250</div>
+      <div class="cs-label">Calories</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cs-value">12</div>
+      <div class="cs-label">Ingredients</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================
+     TABLE OF CONTENTS
+     ======================================== -->
+<nav class="toc">
+  <a href="#market">Market Opportunity</a>
+  <a href="#nutrition">Nutrition Profile</a>
+  <a href="#label">FDA Label</a>
+  <a href="#claims">FDA Claims</a>
+  <a href="#competitors">Competitive Analysis</a>
+  <a href="#recipe">Prototype Recipe</a>
+</nav>
+
+<div class="container">
+
+<!-- ========================================
+     1. MARKET OPPORTUNITY
+     ======================================== -->
+<div class="section" id="market">
+  <div class="section-label">Section 01</div>
+  <h2>The GLP-1 Nutrition Gap</h2>
+
+  <p>Over 12 million Americans are currently prescribed GLP-1 medications (semaglutide, tirzepatide) for weight management. These drugs suppress appetite, reducing daily intake to 1,200–1,500 calories — creating a critical nutrition paradox: patients eat dramatically less while their bodies still require the same essential vitamins and minerals. Published research from ACLM, ASN, OMA, and TOS documents alarming deficiency rates across GLP-1 populations.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Deficiency</th>
+        <th>% of GLP-1 Users Affected</th>
+        <th>This Bar Delivers</th>
+        <th>Key Whole-Food Sources in Bar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Magnesium</strong></td>
+        <td>89.9%</td>
+        <td class="win">33% DV (140mg)</td>
+        <td>Pumpkin seeds, cacao, almond butter, hemp</td>
+      </tr>
+      <tr>
+        <td><strong>Iron</strong></td>
+        <td>88.4%</td>
+        <td class="win">16% DV (2.9mg)</td>
+        <td>Cacao, pumpkin seeds, tahini, hemp seeds</td>
+      </tr>
+      <tr>
+        <td><strong>Protein (sarcopenia)</strong></td>
+        <td>Risk: 8% → 32%</td>
+        <td class="win">36% DV (18g)</td>
+        <td>Egg white, almond butter, pumpkin seeds, collagen</td>
+      </tr>
+      <tr>
+        <td><strong>Zinc</strong></td>
+        <td>Commonly deficient</td>
+        <td class="win">18% DV (2.0mg)</td>
+        <td>Pumpkin seeds, hemp seeds, cacao</td>
+      </tr>
+      <tr>
+        <td><strong>Potassium</strong></td>
+        <td>98.6%</td>
+        <td>8% DV (370mg)</td>
+        <td>Dates, cacao, almond butter, pumpkin seeds</td>
+      </tr>
+      <tr>
+        <td><strong>Choline</strong></td>
+        <td>94.2%</td>
+        <td>~5% DV (~27mg)</td>
+        <td>Egg whites, seeds</td>
+      </tr>
+      <tr>
+        <td><strong>Vitamin D</strong></td>
+        <td>98.6%</td>
+        <td>0% DV</td>
+        <td>Not addressable via whole foods in bar format</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Honest assessment:</strong> This bar meaningfully addresses 5 of 7 major GLP-1 deficiencies through whole-food sources alone. Vitamin D and potassium cannot be adequately concentrated in a 60g bar without synthetic fortification. The D2C subscription model creates an opportunity to bundle vitamin D drops or electrolyte packets as add-ons — addressing these gaps without compromising the bar's clean-label integrity.</p>
+
+  <p><strong>Market validation:</strong> Nestlé launched Vital Pursuit (frozen meals for GLP-1 users) in 2024 to national retail distribution at Walmart, Target, and Kroger — the first major CPG brand to explicitly target this population. No clean-label snack bar has entered this space with a micronutrient-first formulation. J.P. Morgan predicts total GLP-1 users will reach 30 million by 2030.</p>
+</div>
+
+<!-- ========================================
+     2. NUTRITION PROFILE
+     ======================================== -->
+<div class="section" id="nutrition">
+  <div class="section-label">Section 02</div>
+  <h2>Ingredient Formulation</h2>
+
+  <p>Every ingredient serves multiple functions — delivering protein, micronutrients, texture, or flavor. No filler. No isolates. No artificial anything. The bar achieves 29% of calories from protein using only whole foods.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Ingredient</th>
+        <th class="right">Weight</th>
+        <th class="right">Protein</th>
+        <th class="right">Calories</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Egg White Protein Powder</td>
+        <td class="right">11g</td>
+        <td class="right">8.8g</td>
+        <td class="right">42</td>
+        <td>Primary protein (complete amino acids)</td>
+      </tr>
+      <tr>
+        <td>Dates (Medjool, pitted)</td>
+        <td class="right">14g</td>
+        <td class="right">0.3g</td>
+        <td class="right">39</td>
+        <td>Binder, sweetener, potassium</td>
+      </tr>
+      <tr>
+        <td>Almond Butter</td>
+        <td class="right">10g</td>
+        <td class="right">2.1g</td>
+        <td class="right">61</td>
+        <td>Protein, vitamin E, magnesium, creaminess</td>
+      </tr>
+      <tr>
+        <td>Pumpkin Seeds (pepitas)</td>
+        <td class="right">8g</td>
+        <td class="right">2.4g</td>
+        <td class="right">45</td>
+        <td>Iron, magnesium, zinc, crunch</td>
+      </tr>
+      <tr>
+        <td>Cacao Powder (unsweetened)</td>
+        <td class="right">6g</td>
+        <td class="right">1.2g</td>
+        <td class="right">14</td>
+        <td>Flavor, iron, magnesium, antioxidants</td>
+      </tr>
+      <tr>
+        <td>Tahini (ground sesame seeds)</td>
+        <td class="right">5g</td>
+        <td class="right">0.9g</td>
+        <td class="right">30</td>
+        <td>Calcium, iron, copper, flavor depth</td>
+      </tr>
+      <tr>
+        <td>Hemp Seeds (hulled)</td>
+        <td class="right">3g</td>
+        <td class="right">1.0g</td>
+        <td class="right">17</td>
+        <td>Complete protein, magnesium, omega-3</td>
+      </tr>
+      <tr>
+        <td>Chia Seeds</td>
+        <td class="right">2g</td>
+        <td class="right">0.3g</td>
+        <td class="right">10</td>
+        <td>Calcium, binding gel, omega-3</td>
+      </tr>
+      <tr>
+        <td>Collagen Peptides (bovine)</td>
+        <td class="right">2g</td>
+        <td class="right">1.8g</td>
+        <td class="right">7</td>
+        <td>Protein diversity, joint/skin support</td>
+      </tr>
+      <tr>
+        <td>Organic Green Tea Extract</td>
+        <td class="right">0.15g</td>
+        <td class="right">—</td>
+        <td class="right">0</td>
+        <td>80mg caffeine + L-theanine</td>
+      </tr>
+      <tr>
+        <td>Sea Salt</td>
+        <td class="right">0.5g</td>
+        <td class="right">—</td>
+        <td class="right">0</td>
+        <td>Flavor enhancement, electrolyte</td>
+      </tr>
+      <tr>
+        <td>Vanilla Extract</td>
+        <td class="right">0.35g</td>
+        <td class="right">—</td>
+        <td class="right">0</td>
+        <td>Flavor bridge</td>
+      </tr>
+      <tr class="total-row">
+        <td><strong>TOTAL</strong></td>
+        <td class="right"><strong>~60g</strong></td>
+        <td class="right"><strong>18.8g</strong></td>
+        <td class="right"><strong>~250</strong></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size: 13px; color: var(--gray-500);">Nutritional values calculated from USDA FoodData Central. Actual values may vary ±5–10% based on ingredient sourcing. Final label requires third-party proximate analysis per 21 CFR § 101.9.</p>
+
+  <!-- Ingredient Statement -->
+  <h3>Packaging Ingredient Statement</h3>
+  <div class="ingredient-label">
+    <div class="il-title">Ingredients:</div>
+    <div class="il-text">Egg White Protein, Dates, Almond Butter, Pumpkin Seeds, Cacao Powder, Tahini (Ground Sesame Seeds), Hemp Seeds, Chia Seeds, Collagen Peptides, Organic Green Tea Extract (80mg caffeine), Sea Salt, Vanilla Extract.</div>
+    <div class="il-allergen">CONTAINS: EGG, TREE NUTS (ALMOND), SESAME.</div>
+    <div class="il-caffeine">Contains 80mg of caffeine per bar. Not recommended for children, pregnant or nursing women, or persons sensitive to caffeine.</div>
+  </div>
+  <p><strong>12 ingredients.</strong> Every one is a recognizable whole food. Inherently gluten-free. Kosher-certifiable with kosher-certified collagen sourcing.</p>
+</div>
+
+<!-- ========================================
+     3. FDA NUTRITION FACTS LABEL
+     ======================================== -->
+<div class="section" id="label">
+  <div class="section-label">Section 03</div>
+  <h2>FDA-Compliant Nutrition Facts Label</h2>
+
+  <div class="nf-wrapper">
+    <!-- LEFT: Nutrition Facts Panel -->
+    <div class="nf-label">
+      <div class="nf-title">Nutrition Facts</div>
+      <div class="nf-serving-header">
+        <div class="nf-serving-size">Serving Size 1 bar (60g)</div>
+        <div class="nf-serving-detail">Servings Per Container: 1</div>
+      </div>
+      <div class="nf-calories-row">
+        <span class="nf-calories-label">Calories</span>
+        <span class="nf-calories-value">250</span>
+      </div>
+      <div class="nf-dv-header">% Daily Value*</div>
+      <div class="nf-row">
+        <span><span class="nf-name">Total Fat</span> 15g</span>
+        <span class="nf-dv">19%</span>
+      </div>
+      <div class="nf-row">
+        <span><span class="nf-name indent1">Saturated Fat</span> 2.5g</span>
+        <span class="nf-dv">13%</span>
+      </div>
+      <div class="nf-row">
+        <span><span class="nf-name indent1"><em>Trans</em> Fat</span> 0g</span>
+        <span class="nf-dv"></span>
+      </div>
+      <div class="nf-row">
+        <span><span class="nf-name">Cholesterol</span> 0mg</span>
+        <span class="nf-dv">0%</span>
+      </div>
+      <div class="nf-row">
+        <span><span class="nf-name">Sodium</span> 190mg</span>
+        <span class="nf-dv">8%</span>
+      </div>
+      <div class="nf-row">
+        <span><span class="nf-name">Total Carbohydrate</span> 20g</span>
+        <span class="nf-dv">7%</span>
+      </div>
+      <div class="nf-row">
+        <span><span class="nf-name indent1">Dietary Fiber</span> 6g</span>
+        <span class="nf-dv">21%</span>
+      </div>
+      <div class="nf-row">
+        <span><span class="nf-name indent1">Total Sugars</span> 9g</span>
+        <span class="nf-dv"></span>
+      </div>
+      <div class="nf-row med-bottom">
+        <span><span class="nf-name indent2">Includes 0g Added Sugars</span></span>
+        <span class="nf-dv">0%</span>
+      </div>
+      <div class="nf-row thick-bottom">
+        <span><span class="nf-name">Protein</span> 18g</span>
+        <span class="nf-dv">36%</span>
+      </div>
+      <!-- Mandatory -->
+      <div class="nf-vitamin-row">
+        <span>Vitamin D 0mcg</span><span class="nf-dv">0%</span>
+      </div>
+      <div class="nf-vitamin-row">
+        <span>Calcium 70mg</span><span class="nf-dv">6%</span>
+      </div>
+      <div class="nf-vitamin-row">
+        <span>Iron 2.9mg</span><span class="nf-dv">16%</span>
+      </div>
+      <div class="nf-vitamin-row" style="border-bottom: 4px solid var(--black);">
+        <span>Potassium 370mg</span><span class="nf-dv">8%</span>
+      </div>
+      <!-- Voluntary — Differentiators -->
+      <div class="nf-vitamin-row" style="font-weight:700;">
+        <span>Magnesium 140mg</span><span class="nf-dv">33%</span>
+      </div>
+      <div class="nf-vitamin-row">
+        <span>Zinc 2.0mg</span><span class="nf-dv">18%</span>
+      </div>
+      <div class="nf-vitamin-row">
+        <span>Copper 0.5mg</span><span class="nf-dv">56%</span>
+      </div>
+      <div class="nf-vitamin-row">
+        <span>Vitamin E 2.4mg</span><span class="nf-dv">16%</span>
+      </div>
+      <div class="nf-vitamin-row">
+        <span>Phosphorus 270mg</span><span class="nf-dv">22%</span>
+      </div>
+      <div class="nf-vitamin-row">
+        <span>Manganese 1.1mg</span><span class="nf-dv">48%</span>
+      </div>
+      <div class="nf-caffeine-note">Caffeine: 80mg (from organic green tea extract)</div>
+      <div class="nf-footnote">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.</div>
+    </div>
+
+    <!-- RIGHT: Micronutrient Visualization -->
+    <div class="nf-sidebar">
+      <h3 style="margin-top: 0;">Micronutrient Density — % Daily Value per Bar</h3>
+      <p style="font-size: 12px; color: var(--gray-500); margin-bottom: 16px;">Dark green = Excellent Source (≥20% DV) · Light green = Good Source (10–19% DV) · Gold = Notable (&lt;10%)</p>
+
+      <div class="micro-bar-container">
+        <div class="micro-bar-label"><span>Copper</span><span>56% DV</span></div>
+        <div class="micro-bar-track"><div class="micro-bar-fill excellent" style="width:56%;">0.5mg</div></div>
+      </div>
+      <div class="micro-bar-container">
+        <div class="micro-bar-label"><span>Manganese</span><span>48% DV</span></div>
+        <div class="micro-bar-track"><div class="micro-bar-fill excellent" style="width:48%;">1.1mg</div></div>
+      </div>
+      <div class="micro-bar-container">
+        <div class="micro-bar-label"><span>Protein</span><span>36% DV</span></div>
+        <div class="micro-bar-track"><div class="micro-bar-fill excellent" style="width:36%;">18g</div></div>
+      </div>
+      <div class="micro-bar-container">
+        <div class="micro-bar-label"><span>Magnesium</span><span>33% DV</span></div>
+        <div class="micro-bar-track"><div class="micro-bar-fill excellent" style="width:33%;">140mg</div></div>
+      </div>
+      <div class="micro-bar-container">
+        <div class="micro-bar-label"><span>Phosphorus</span><span>22% DV</span></div>
+        <div class="micro-bar-track"><div class="micro-bar-fill excellent" style="width:22%;">270mg</div></div>
+      </div>
+      <div class="micro-bar-container">
+        <div class="micro-bar-label"><span>Fiber</span><span>21% DV</span></div>
+        <div class="micro-bar-track"><div class="micro-bar-fill excellent" style="width:21%;">6g</div></div>
+      </div>
+      <div class="micro-bar-container">
+        <div class="micro-bar-label"><span>Zinc</span><span>18% DV</span></div>
+        <div class="micro-bar-track"><div class="micro-bar-fill good" style="width:18%;">2.0mg</div></div>
+      </div>
+      <div class="micro-bar-container">
+        <div class="micro-bar-label"><span>Iron</span><span>16% DV</span></div>
+        <div class="micro-bar-track"><div class="micro-bar-fill good" style="width:16%;">2.9mg</div></div>
+      </div>
+      <div class="micro-bar-container">
+        <div class="micro-bar-label"><span>Vitamin E</span><span>16% DV</span></div>
+        <div class="micro-bar-track"><div class="micro-bar-fill good" style="width:16%;">2.4mg</div></div>
+      </div>
+      <div class="micro-bar-container">
+        <div class="micro-bar-label"><span>Potassium</span><span>8% DV</span></div>
+        <div class="micro-bar-track"><div class="micro-bar-fill fair" style="width:8%;">370mg</div></div>
+      </div>
+      <div class="micro-bar-container">
+        <div class="micro-bar-label"><span>Calcium</span><span>6% DV</span></div>
+        <div class="micro-bar-track"><div class="micro-bar-fill fair" style="width:8%;">70mg</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================
+     4. FDA CLAIMS
+     ======================================== -->
+<div class="section" id="claims">
+  <div class="section-label">Section 04</div>
+  <h2>FDA-Compliant Nutrient Content Claims</h2>
+  <p>Under 21 CFR § 101.54–101.56, the following claims can legally appear on packaging:</p>
+
+  <div class="claims-grid">
+    <div class="claim-box"><div class="claim-type">Excellent Source</div><div class="claim-nutrient">Protein</div><div class="claim-detail">18g per bar (36% DV) — requires ≥10g per RACC</div></div>
+    <div class="claim-box"><div class="claim-type">Excellent Source</div><div class="claim-nutrient">Magnesium</div><div class="claim-detail">140mg per bar (33% DV) — requires ≥20% DV</div></div>
+    <div class="claim-box"><div class="claim-type">Excellent Source</div><div class="claim-nutrient">Copper</div><div class="claim-detail">0.5mg per bar (56% DV) — requires ≥20% DV</div></div>
+    <div class="claim-box"><div class="claim-type">Excellent Source</div><div class="claim-nutrient">Phosphorus</div><div class="claim-detail">270mg per bar (22% DV) — requires ≥20% DV</div></div>
+    <div class="claim-box"><div class="claim-type">Excellent Source</div><div class="claim-nutrient">Manganese</div><div class="claim-detail">1.1mg per bar (48% DV) — requires ≥20% DV</div></div>
+    <div class="claim-box"><div class="claim-type">Good Source</div><div class="claim-nutrient">Iron</div><div class="claim-detail">2.9mg per bar (16% DV) — requires 10–19% DV</div></div>
+    <div class="claim-box"><div class="claim-type">Good Source</div><div class="claim-nutrient">Zinc</div><div class="claim-detail">2.0mg per bar (18% DV) — requires 10–19% DV</div></div>
+    <div class="claim-box"><div class="claim-type">Good Source</div><div class="claim-nutrient">Vitamin E</div><div class="claim-detail">2.4mg per bar (16% DV) — requires 10–19% DV</div></div>
+    <div class="claim-box"><div class="claim-type">Good Source</div><div class="claim-nutrient">Dietary Fiber</div><div class="claim-detail">6g per bar (21% DV) — requires 10–19% DV</div></div>
+    <div class="claim-box"><div class="claim-type">Additional Claim</div><div class="claim-nutrient">0g Added Sugar</div><div class="claim-detail">Sweetened entirely by dates (whole fruit exempt under FDA rules)</div></div>
+  </div>
+
+  <h3>Front-of-Package Mockup</h3>
+  <div class="fop-mockup">
+    <div class="fop-brand">[ Brand Name ]</div>
+    <div class="fop-product">Dark Chocolate Tahini</div>
+    <div class="fop-claims">18g PROTEIN &nbsp;·&nbsp; 80mg CAFFEINE &nbsp;·&nbsp; 0g ADDED SUGAR</div>
+    <div class="fop-glp1">GLP-1 Friendly</div>
+    <div class="fop-micro">Excellent Source of Magnesium · Good Source of Iron, Zinc & Vitamin E</div>
+    <div class="fop-ingredients">12 Whole Food Ingredients · No Artificial Anything</div>
+  </div>
+
+  <p style="font-size: 13px; color: var(--gray-600);">The "GLP-1 Friendly" badge follows Nestlé Vital Pursuit and Conagra Healthy Choice precedent — both received USDA approval in 2025. The term has no regulatory definition and is not prohibited when accompanied by substantiated nutrient content claims. FDA regulates on-label claims; FTC regulates advertising. Explicit GLP-1 medication references (semaglutide, tirzepatide) are permitted in digital marketing per Nestlé precedent.</p>
+</div>
+
+<!-- ========================================
+     5. COMPETITIVE ANALYSIS
+     ======================================== -->
+<div class="section" id="competitors">
+  <div class="section-label">Section 05</div>
+  <h2>Competitive Analysis</h2>
+
+  <p>The protein bar market has no product combining high protein, clean caffeine, targeted micronutrient density, and zero added sugar in a whole-food format. Each competitor wins on one axis but fails on the others.</p>
+
+  <!-- HEAD-TO-HEAD TABLE -->
+  <h3>Head-to-Head Comparison</h3>
+  <table style="font-size: 13px;">
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th style="background:#3d6b35;">Our Bar</th>
+        <th>David Gold</th>
+        <th>RXBAR High Protein</th>
+        <th>RXBAR Original</th>
+        <th>ALOHA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Weight</strong></td>
+        <td><strong>60g</strong></td>
+        <td>~50g</td>
+        <td>60g</td>
+        <td>52g</td>
+        <td>56g</td>
+      </tr>
+      <tr>
+        <td><strong>Protein</strong></td>
+        <td><strong>18g</strong></td>
+        <td>28g</td>
+        <td>18g</td>
+        <td>12g</td>
+        <td>14g</td>
+      </tr>
+      <tr>
+        <td><strong>Calories</strong></td>
+        <td><strong>250</strong></td>
+        <td>150</td>
+        <td>260</td>
+        <td>210</td>
+        <td>260</td>
+      </tr>
+      <tr>
+        <td><strong>Added Sugar</strong></td>
+        <td class="win"><strong>0g</strong></td>
+        <td>0g</td>
+        <td class="lose">15g</td>
+        <td>0g</td>
+        <td>3–5g</td>
+      </tr>
+      <tr>
+        <td><strong>Caffeine</strong></td>
+        <td class="win"><strong>80mg</strong></td>
+        <td>0mg</td>
+        <td>0mg</td>
+        <td>0mg</td>
+        <td>0mg</td>
+      </tr>
+      <tr>
+        <td><strong>Magnesium</strong></td>
+        <td class="win"><strong>33% DV</strong></td>
+        <td>0%</td>
+        <td>~4%</td>
+        <td>~6%</td>
+        <td>~8%</td>
+      </tr>
+      <tr>
+        <td><strong>Iron</strong></td>
+        <td class="win"><strong>16% DV</strong></td>
+        <td>~2%</td>
+        <td>15%</td>
+        <td>~8%</td>
+        <td>~15%</td>
+      </tr>
+      <tr>
+        <td><strong>Zinc</strong></td>
+        <td class="win"><strong>18% DV</strong></td>
+        <td>0%</td>
+        <td>~2%</td>
+        <td>~4%</td>
+        <td>~6%</td>
+      </tr>
+      <tr>
+        <td><strong>Artificial Sweeteners</strong></td>
+        <td class="win"><strong>None</strong></td>
+        <td class="lose">Sucralose, Ace-K / Stevia</td>
+        <td>None</td>
+        <td>None</td>
+        <td>None</td>
+      </tr>
+      <tr>
+        <td><strong>Ingredients</strong></td>
+        <td><strong>12</strong></td>
+        <td>15–17+</td>
+        <td>6</td>
+        <td>6</td>
+        <td>~15</td>
+      </tr>
+      <tr>
+        <td><strong>GLP-1 Strategy</strong></td>
+        <td class="win"><strong>Yes — formulated</strong></td>
+        <td>No</td>
+        <td>No</td>
+        <td>No</td>
+        <td>No</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- INDIVIDUAL COMPETITOR CARDS -->
+  <h3 style="margin-top: 36px;">Competitor Deep Dives</h3>
+
+  <!-- DAVID -->
+  <div class="comp-card" data-rank="Threat Level: Low">
+    <div class="comp-card-header">
+      <div class="comp-card-name">David Protein Bar</div>
+      <div class="comp-card-sub">Gold: 28g protein / 150 cal · Bronze: 20g / 150 cal · $3.25/bar</div>
+    </div>
+    <div class="comp-card-stats">
+      <div class="comp-card-stat"><div class="ccs-value">28g</div><div class="ccs-label">Protein</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">150</div><div class="ccs-label">Calories</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">0g</div><div class="ccs-label">Sugar</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">75%</div><div class="ccs-label">Cal from Protein</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">0%</div><div class="ccs-label">Magnesium DV</div></div>
+    </div>
+    <div>
+      <span class="comp-strength">Best-in-class protein density</span>
+      <span class="comp-strength">Frequent sellouts / hype</span>
+      <span class="comp-weakness">Zero micronutrient strategy</span>
+      <span class="comp-weakness">Artificial sweeteners (sucralose, ace-K, stevia)</span>
+      <span class="comp-weakness">EPG modified fat substitute</span>
+      <span class="comp-weakness">17+ processed ingredients</span>
+    </div>
+    <div class="comp-verdict">
+      <strong>Why we win:</strong> David optimizes for one thing — protein-to-calorie ratio — and achieves it through heavily engineered food science. Their Gold bar uses milk protein isolate, maltitol, EPG (a modified plant fat with 0.7 cal/g), and artificial sweeteners. Zero micronutrients. For a gym bro tracking macros, David is compelling. For a GLP-1 user whose endocrinologist is telling them to address magnesium and iron deficiency, David solves nothing. These are fundamentally different customers. David's new Bronze line (candy-bar style, 20g protein) further confirms they're chasing the fitness/indulgence market, not the clinical nutrition space.
+    </div>
+  </div>
+
+  <!-- RXBAR HIGH PROTEIN -->
+  <div class="comp-card" data-rank="Threat Level: Medium">
+    <div class="comp-card-header">
+      <div class="comp-card-name">RXBAR High Protein</div>
+      <div class="comp-card-sub">Launched June 2025 · Strawberry PB & Vanilla PB · ~$2.50/bar</div>
+    </div>
+    <div class="comp-card-stats">
+      <div class="comp-card-stat"><div class="ccs-value">18g</div><div class="ccs-label">Protein</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">260</div><div class="ccs-label">Calories</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">15g</div><div class="ccs-label">Added Sugar</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">6</div><div class="ccs-label">Ingredients</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">~4%</div><div class="ccs-label">Magnesium DV</div></div>
+    </div>
+    <div>
+      <span class="comp-strength">Brand recognition & retail distribution</span>
+      <span class="comp-strength">6 simple ingredients</span>
+      <span class="comp-strength">Kellanova / Mars backing</span>
+      <span class="comp-weakness">15g added sugar (30% DV) from agave nectar</span>
+      <span class="comp-weakness">Pea protein — chalky, sticky reviews</span>
+      <span class="comp-weakness">Essentially zero micronutrient density</span>
+      <span class="comp-weakness">No caffeine, no GLP-1 positioning</span>
+    </div>
+    <div class="comp-verdict">
+      <strong>Why we win:</strong> This is the most direct comparison — identical protein (18g) at nearly identical weight (60g). The differentiation is stark: they have 15g added sugar where we have 0g. They use pea protein (which reviewers describe as chalky and sticky); we use egg white protein. They deliver negligible micronutrients; we carry 9 FDA-claimable nutrients. Early consumer reviews are already flagging the texture issues and calorie density. RXBAR's advantage is shelf space — they're in every Target, Walmart, and Whole Foods. Their weakness is formulation. They're playing last cycle's game: more protein at any cost. We're playing the next one: nutrient density per calorie.
+    </div>
+  </div>
+
+  <!-- RXBAR ORIGINAL -->
+  <div class="comp-card" data-rank="Threat Level: Low">
+    <div class="comp-card-header">
+      <div class="comp-card-name">RXBAR Original Line</div>
+      <div class="comp-card-sub">8 flavors · 12g protein / 210 cal · ~$2.35/bar</div>
+    </div>
+    <div class="comp-card-stats">
+      <div class="comp-card-stat"><div class="ccs-value">12g</div><div class="ccs-label">Protein</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">210</div><div class="ccs-label">Calories</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">0g</div><div class="ccs-label">Added Sugar</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">6</div><div class="ccs-label">Ingredients</div></div>
+    </div>
+    <div>
+      <span class="comp-strength">Gold standard clean-label bar</span>
+      <span class="comp-strength">Massive retail distribution</span>
+      <span class="comp-strength">Egg white protein (dates + nuts model)</span>
+      <span class="comp-weakness">Only 12g protein — not "high protein"</span>
+      <span class="comp-weakness">Minimal micronutrient density</span>
+      <span class="comp-weakness">No caffeine, no GLP-1 positioning</span>
+    </div>
+    <div class="comp-verdict">
+      <strong>Why we win:</strong> RXBAR Original is the closest spiritual predecessor — clean ingredients, egg whites, dates, "No B.S." ethos. We share the philosophy but dramatically expand the nutritional payload: 50% more protein (18g vs 12g), 80mg caffeine, and 9 claimable micronutrients vs essentially none. Our bar is what RXBAR would build if they started today targeting GLP-1 users instead of general snackers.
+    </div>
+  </div>
+
+  <!-- NESTLE VITAL PURSUIT -->
+  <div class="comp-card" data-rank="Market Context">
+    <div class="comp-card-header">
+      <div class="comp-card-name">Nestlé Vital Pursuit</div>
+      <div class="comp-card-sub">Frozen meals for GLP-1 users · Launched 2024 · $4.99/meal</div>
+    </div>
+    <div class="comp-card-stats">
+      <div class="comp-card-stat"><div class="ccs-value">1st</div><div class="ccs-label">CPG to target GLP-1</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">Frozen</div><div class="ccs-label">Format only</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">3</div><div class="ccs-label">National retailers</div></div>
+    </div>
+    <div>
+      <span class="comp-strength">First-mover in GLP-1 food category</span>
+      <span class="comp-strength">Walmart, Target, Kroger distribution</span>
+      <span class="comp-strength">Established "GLP-1 Friendly" label precedent</span>
+      <span class="comp-weakness">Frozen only — no grab-and-go format</span>
+      <span class="comp-weakness">Ultra-processed ingredient lists</span>
+      <span class="comp-weakness">No snack bar in portfolio</span>
+    </div>
+    <div class="comp-verdict">
+      <strong>Not a direct competitor — but the most important market signal.</strong> Nestlé validated the GLP-1 food category by putting corporate weight behind it. They created glp-1nutrition.com as a consumer education hub. They proved retailers will stock explicitly GLP-1-positioned products. They also proved the category is wide open for grab-and-go formats — their portfolio is entirely frozen, leaving the snack bar space uncontested. We enter the gap they created.
+    </div>
+  </div>
+
+  <!-- POSITIONING STATEMENT -->
+  <div class="green-box" style="margin-top: 28px;">
+    <strong>The uncontested position:</strong> No product in market combines high protein (18g), clean caffeine (80mg), targeted micronutrient density (9 FDA-claimable nutrients), zero added sugar, and a 12-ingredient whole-food label. David wins on protein math. RXBAR wins on ingredient simplicity. Neither addresses micronutrient deficiency. Our bar is the only product purpose-built for the clinical nutrition needs of GLP-1 patients — a market growing to 30 million Americans by 2030.
+  </div>
+</div>
+
+<!-- ========================================
+     6. HOME PROTOTYPE RECIPE
+     ======================================== -->
+<div class="section" id="recipe">
+  <div class="section-label">Section 06</div>
+  <h2>Home Prototype Recipe</h2>
+
+  <p>This recipe produces 8 bars for taste testing. The goal is to lock the flavor profile — texture will be refined during co-manufacturer onboarding. Make it exactly as written for Batch 1, then iterate.</p>
+
+  <div class="yield-box">
+    <div class="yield-item">
+      <div class="yi-label">Yield</div>
+      <div class="yi-value">8</div>
+      <div class="yi-note">bars</div>
+    </div>
+    <div class="yield-item">
+      <div class="yi-label">Bar Weight</div>
+      <div class="yi-value">~60g</div>
+      <div class="yi-note">each</div>
+    </div>
+    <div class="yield-item">
+      <div class="yi-label">Active Time</div>
+      <div class="yi-value">20</div>
+      <div class="yi-note">minutes</div>
+    </div>
+    <div class="yield-item">
+      <div class="yi-label">Set Time</div>
+      <div class="yi-value">2+ hr</div>
+      <div class="yi-note">refrigerate</div>
+    </div>
+    <div class="yield-item">
+      <div class="yi-label">Per Bar</div>
+      <div class="yi-value">~250</div>
+      <div class="yi-note">calories</div>
+    </div>
+  </div>
+
+  <h3>Ingredients — Batch of 8 Bars (~480g)</h3>
+  <div class="ingredient-grid">
+    <div class="ing-item"><span class="ing-name">Egg White Protein Powder</span><span class="ing-amount">88g (~6 tbsp)</span></div>
+    <div class="ing-item"><span class="ing-name">Medjool Dates, pitted</span><span class="ing-amount">112g (~8 dates)</span></div>
+    <div class="ing-item"><span class="ing-name">Almond Butter</span><span class="ing-amount">80g (~5 tbsp)</span></div>
+    <div class="ing-item"><span class="ing-name">Pumpkin Seeds (pepitas)</span><span class="ing-amount">64g (~½ cup)</span></div>
+    <div class="ing-item"><span class="ing-name">Unsweetened Cacao Powder</span><span class="ing-amount">48g (~½ cup)</span></div>
+    <div class="ing-item"><span class="ing-name">Tahini</span><span class="ing-amount">40g (~3 tbsp)</span></div>
+    <div class="ing-item"><span class="ing-name">Hemp Seeds (hulled)</span><span class="ing-amount">24g (~3 tbsp)</span></div>
+    <div class="ing-item"><span class="ing-name">Chia Seeds</span><span class="ing-amount">16g (~2 tbsp)</span></div>
+    <div class="ing-item"><span class="ing-name">Collagen Peptides</span><span class="ing-amount">16g (~1 tbsp)</span></div>
+    <div class="ing-item"><span class="ing-name">Sea Salt</span><span class="ing-amount">4g (~¾ tsp)</span></div>
+    <div class="ing-item"><span class="ing-name">Vanilla Extract</span><span class="ing-amount">3g (~½ tsp)</span></div>
+    <div class="ing-item"><span class="ing-name">Water (if needed)</span><span class="ing-amount">1–3 tbsp</span></div>
+  </div>
+
+  <div class="tip-box"><strong>Skip the green tea extract for this taste test.</strong> At 80mg per bar, it's a fraction of a gram — completely tasteless. You're testing the chocolate-tahini-seed flavor profile. The extract gets added at manufacturing.</div>
+
+  <h3>Equipment</h3>
+  <p>Food processor (essential), 8×8" or 9×5" loaf pan, parchment paper, kitchen scale (strongly recommended), spatula, knife.</p>
+
+  <h3>Method</h3>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <div class="step-title">Soften the Dates</div>
+      <div class="step-detail">If dates are dry/firm, soak in warm water 5–10 min, then drain. Fresh soft Medjool dates can skip this. Pit and tear each into 2–3 pieces.</div>
+      <div class="step-time">5 min</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <div class="step-title">Pulse the Pumpkin Seeds</div>
+      <div class="step-detail">Pulse 5–8 times until roughly chopped — some pieces, some powder. You want texture variation. Transfer to a large mixing bowl.</div>
+      <div class="step-time">1 min</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <div class="step-title">Process the Date-Butter Base</div>
+      <div class="step-detail">Add dates, almond butter, and tahini to food processor. Process 30–60 seconds until thick sticky paste. Scrape sides. Should look like dark chunky nut butter — not perfectly smooth.</div>
+      <div class="step-time">2 min</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-content">
+      <div class="step-title">Combine Dry Ingredients</div>
+      <div class="step-detail">To the mixing bowl with pumpkin seeds, add: egg white powder, cacao, collagen, hemp seeds, chia seeds, sea salt. Whisk until evenly combined.</div>
+      <div class="step-time">1 min</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-content">
+      <div class="step-title">Combine Wet + Dry</div>
+      <div class="step-detail">Add date-butter paste and vanilla into dry mix. Mix with spatula or hands — takes muscle. Should be thick, dense, slightly sticky. <strong>If too dry/crumbly, add water 1 tbsp at a time</strong> until cohesive.</div>
+      <div class="step-time">3–5 min</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">6</div>
+    <div class="step-content">
+      <div class="step-title">Press into Pan</div>
+      <div class="step-detail">Line 8×8" pan with parchment (leave overhang). Press mixture firmly and evenly — compaction prevents crumbling. Aim for ¾" thickness.</div>
+      <div class="step-time">2 min</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">7</div>
+    <div class="step-content">
+      <div class="step-title">Refrigerate</div>
+      <div class="step-detail">Cover and refrigerate at least 2 hours, ideally overnight. Chia seeds hydrate and create a gel matrix that binds everything. Don't rush this.</div>
+      <div class="step-time">2+ hours</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">8</div>
+    <div class="step-content">
+      <div class="step-title">Cut & Taste</div>
+      <div class="step-detail">Remove with parchment overhang. Cut into 8 equal bars (~60g each). Wrap individually. Store refrigerated 7–10 days or freeze up to 2 months.</div>
+      <div class="step-time">2 min</div>
+    </div>
+  </div>
+
+  <div class="warn-box"><strong>Texture expectations:</strong> Home prototype will be denser/chewier than commercial. Commercial bars use industrial presses, controlled humidity, and precise temperature. Don't evaluate texture critically — you're testing <em>flavor</em>. If taste is right, co-manufacturer dials in texture.</div>
+
+  <h3>What to Evaluate</h3>
+  <div class="eval-grid">
+    <div class="eval-card"><div class="ec-title">Sweetness</div><div class="ec-body">Naturally sweet, not dessert. If too flat, add 1–2 more dates per batch. If too sweet, reduce by 1–2 dates.</div></div>
+    <div class="eval-card"><div class="ec-title">Chocolate Intensity</div><div class="ec-body">Dark, rich, brownie-like. If too bitter, swap 8g cacao for dates. If you want more, increase cacao 8g.</div></div>
+    <div class="eval-card"><div class="ec-title">Tahini Character</div><div class="ec-body">Earthy, savory depth. If polarizing, cut to 20g. If you love it, push to 50g. Adjust almond butter inversely.</div></div>
+    <div class="eval-card"><div class="ec-title">Salt Level</div><div class="ec-body">Biggest lever for "finished" vs flat. You may need 50% more. Salt suppresses bitterness and amplifies perceived sweetness.</div></div>
+    <div class="eval-card"><div class="ec-title">Crunch Factor</div><div class="ec-body">Pumpkin seeds provide crunch. Less pulsing = bigger pieces. More pulsing = smoother. Adjust to preference.</div></div>
+    <div class="eval-card"><div class="ec-title">Protein Powder Taste</div><div class="ec-body">Egg white can add slight chalkiness. Cacao and almond butter should mask. Try different brands if gritty.</div></div>
+  </div>
+
+  <h3>Iteration Roadmap</h3>
+  <p><strong>Batch 1:</strong> Make exactly as written. Taste. Take notes on the six criteria above. Share with 2–3 trusted people for unfiltered feedback.</p>
+  <p><strong>Batch 2:</strong> Adjust based on feedback. Most common first-batch changes: more salt, slightly more dates, tweak tahini-to-almond-butter ratio. Change 1–2 variables at a time.</p>
+  <p><strong>Batch 3:</strong> Lock the flavor. This becomes the reference recipe you hand to a co-manufacturer for scale production with proper food science (water activity control, shelf stability testing).</p>
+
+  <div class="green-box"><strong>The gap between home and commercial:</strong> A co-manufacturer will fine-tune moisture content, may add a small amount of natural preservative (citric acid or vitamin E/mixed tocopherols) only if needed, and use industrial forming equipment. But the flavor you develop at home is the blueprint they work from. This is exactly how RXBAR started — Peter Rahal made bars in his kitchen before scaling to a co-packer.</div>
+</div>
+
+</div><!-- end .container -->
+
+<!-- ========================================
+     FOOTER
+     ======================================== -->
+<div class="footer">
+  Dark Chocolate Tahini Bar — Product Blueprint v1.0<br>
+  Formulation based on USDA FoodData Central. All nutritional values are calculated estimates.<br>
+  Final label requires third-party laboratory proximate analysis per 21 CFR § 101.9.<br>
+  Competitive data sourced February 2026. Regulatory guidance reflects current FDA/FTC framework.
+</div>
+
+</body>
+</html>
