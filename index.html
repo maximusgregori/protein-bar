@@ -242,6 +242,58 @@
     .home-cards { flex-direction: column; align-items: center; }
     .home-card { max-width: 100%; }
   }
+
+  /* =============================================
+     ENHANCED MOBILE OPTIMIZATION
+     ============================================= */
+  @media (max-width: 700px) {
+    /* Nav */
+    .site-nav {
+      padding: 0 16px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+    .site-nav-brand {
+      padding: 12px 0 4px;
+      font-size: 15px;
+    }
+    .site-nav-links {
+      width: 100%;
+      padding-bottom: 6px;
+      gap: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .site-nav-links a {
+      padding: 8px 10px;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    /* Hero */
+    .home-hero {
+      padding: 60px 20px 50px;
+      min-height: calc(100vh - 50px);
+    }
+    .home-hero h1 { font-size: 32px; }
+    .home-hero .tagline { font-size: 15px; margin-bottom: 32px; }
+    .home-badge { font-size: 10px; padding: 5px 12px; margin-bottom: 24px; }
+
+    /* Cards */
+    .home-cards { flex-direction: column; align-items: stretch; gap: 12px; max-width: 100%; }
+    .home-card { max-width: 100%; min-width: unset; padding: 20px; }
+    .home-card-title { font-size: 19px; }
+    .home-card-desc { font-size: 13px; }
+    .home-card-label { font-size: 9px; }
+    .home-card-arrow { font-size: 12px; }
+  }
+
+  @media (max-width: 400px) {
+    .home-hero h1 { font-size: 28px; }
+    .home-hero .tagline { font-size: 14px; }
+  }
+
 </style>
 </head>
 <body>
