@@ -468,6 +468,110 @@
     }
   }
 
+
+  /* =============================================
+     ENHANCED MOBILE OPTIMIZATION
+     ============================================= */
+
+  .table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0;
+  }
+
+  .table-wrap table {
+    margin: 0;
+    min-width: 500px;
+  }
+
+  @media (max-width: 700px) {
+    /* Nav */
+    .site-nav {
+      padding: 0 16px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+    .site-nav-brand {
+      padding: 12px 0 4px;
+      font-size: 15px;
+    }
+    .site-nav-links {
+      width: 100%;
+      padding-bottom: 6px;
+      gap: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .site-nav-links a {
+      padding: 8px 10px;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    /* Cover */
+    .cover { padding: 40px 20px 36px; }
+    .cover h1 { font-size: 28px; }
+    .cover .tagline { font-size: 14px; margin-bottom: 24px; }
+    .cover-badge { font-size: 10px; padding: 5px 12px; margin-bottom: 20px; }
+
+    /* Container and Sections */
+    .container { padding: 0 16px; }
+    .section { padding: 32px 0; }
+    .section h2 { font-size: 22px; margin-bottom: 14px; }
+    .section h3 { font-size: 15px; margin: 20px 0 10px; }
+    .section p { font-size: 14px; line-height: 1.65; }
+    .section-label { font-size: 10px; letter-spacing: 1.5px; }
+
+    /* Case study cards */
+    .case-card { padding: 16px; margin: 12px 0; }
+    .case-card::before { font-size: 9px; padding: 3px 8px; right: 12px; }
+    .case-card h4 { font-size: 16px; }
+    .case-card .case-sub { font-size: 12px; }
+    .case-card p { font-size: 13px; }
+    .case-stats { gap: 10px; margin: 10px 0; }
+    .case-stat { min-width: 60px; }
+    .case-stat .cs-value { font-size: 18px; }
+    .case-stat .cs-label { font-size: 9px; }
+
+    /* Phase cards */
+    .phase { padding: 16px; margin: 14px 0; }
+    .phase-header { flex-direction: column; gap: 8px; }
+    .phase-number { font-size: 10px; }
+    .phase h4 { font-size: 16px; }
+    .phase-meta { gap: 8px; }
+    .phase-tag { font-size: 11px; padding: 2px 8px; }
+    .phase p { font-size: 13px; }
+    .phase ul { font-size: 13px; margin-left: 16px; }
+    .phase ul li { margin-bottom: 6px; }
+    .phase .deliverable { font-size: 12px; }
+
+    /* Callout boxes */
+    .green-box, .gold-box, .warn-box, .blue-box {
+      padding: 12px 14px;
+      font-size: 13px;
+      margin: 12px 0;
+    }
+
+    /* Tables */
+    table { font-size: 12px; }
+    table th { padding: 8px 10px; font-size: 10px; }
+    table td { padding: 8px 10px; font-size: 12px; }
+
+    /* Source */
+    .source { font-size: 11px; }
+
+    /* Footer */
+    .footer { padding: 20px 16px; font-size: 11px; }
+  }
+
+  @media (max-width: 400px) {
+    .cover h1 { font-size: 24px; }
+    .case-stat .cs-value { font-size: 16px; }
+    .phase h4 { font-size: 15px; }
+  }
+
 </style>
 </head>
 <body>
@@ -650,7 +754,7 @@
     <h3>How Much Capital Do You Actually Need?</h3>
     <p>To go from validated demand (Phase 3) to first co-packer production run and initial market launch, the typical specialty food startup needs $15,000–$50,000. Here is the breakdown:</p>
 
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr>
           <th>Expense</th>
@@ -700,7 +804,7 @@
           <td><strong>Lean launch: ~$15K–$20K. Full launch with professional branding: ~$35K–$50K.</strong></td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
 
     <h3>Your Funding Options, Ranked by Stage-Appropriateness</h3>
 
@@ -785,7 +889,7 @@
 
   <p>From where you are today — a home prototype that tastes good and has positive informal feedback — to a co-packer-produced bar selling online, the realistic total timeline is <strong>5–8 months</strong>. Here is the compressed view:</p>
 
-  <table>
+  <div class="table-wrap"><table>
     <thead>
       <tr>
         <th>Phase</th>
@@ -838,7 +942,7 @@
         <td><strong>Commercially produced bar selling online</strong></td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
   <p class="source">*Phase 4 runs concurrently with Phase 3, not sequentially.</p>
 
   <div class="gold-box">
