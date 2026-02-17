@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protein Bar Blueprint</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --black: #111;
+    --white: #fff;
+    --bg: #f6f5f0;
+    --green: #3d6b35;
+    --green-light: #eaf2e7;
+    --green-mid: #7ba83e;
+    --gold: #b8943a;
+    --gold-light: #fdf8ec;
+    --red: #c44;
+    --red-light: #fdf0f0;
+    --gray-100: #fafaf8;
+    --gray-200: #eee;
+    --gray-300: #ddd;
+    --gray-400: #999;
+    --gray-500: #777;
+    --gray-600: #555;
+    --gray-700: #333;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--black);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+
+  /* =============================================
+     SITE-WIDE NAVIGATION
+     ============================================= */
+  .site-nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-300);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .site-nav-brand {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 16px;
+    color: var(--black);
+    text-decoration: none;
+    padding: 14px 0;
+    white-space: nowrap;
+  }
+
+  .site-nav-brand:hover {
+    color: var(--green);
+  }
+
+  .site-nav-links {
+    display: flex;
+    gap: 0;
+  }
+
+  .site-nav-links a {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    text-decoration: none;
+    padding: 16px 16px;
+    transition: all 0.15s;
+    border-bottom: 2px solid transparent;
+  }
+
+  .site-nav-links a:hover {
+    color: var(--black);
+    background: rgba(0,0,0,0.02);
+  }
+
+  .site-nav-links a.active {
+    color: var(--green);
+    border-bottom-color: var(--green);
+  }
+
+  @media (max-width: 700px) {
+    .site-nav {
+      padding: 0 16px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .site-nav-brand {
+      padding: 12px 0 4px;
+    }
+    .site-nav-links {
+      width: 100%;
+      padding-bottom: 4px;
+    }
+    .site-nav-links a {
+      padding: 8px 12px;
+      font-size: 11px;
+    }
+  }
+
+
+  /* =============================================
+     HOME PAGE
+     ============================================= */
+  .home-hero {
+    background: var(--black);
+    color: var(--white);
+    padding: 120px 40px 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .home-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(61,107,53,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 30%, rgba(184,148,58,0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .home-badge {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.25);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+    color: rgba(255,255,255,0.5);
+    position: relative;
+  }
+
+  .home-hero h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    line-height: 1.12;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .home-hero .tagline {
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.5);
+    max-width: 580px;
+    margin: 0 auto 48px;
+    line-height: 1.65;
+    position: relative;
+  }
+
+  .home-cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    max-width: 720px;
+  }
+
+  .home-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 28px 24px;
+    text-align: left;
+    flex: 1;
+    min-width: 280px;
+    max-width: 340px;
+    text-decoration: none;
+    color: var(--white);
+    transition: all 0.2s;
+  }
+
+  .home-card:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.25);
+    transform: translateY(-2px);
+  }
+
+  .home-card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 8px;
+  }
+
+  .home-card-title {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 22px;
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+
+  .home-card-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+  }
+
+  .home-card-arrow {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.5px;
+  }
+
+  .home-card:hover .home-card-arrow {
+    color: var(--white);
+  }
+
+  @media (max-width: 700px) {
+    .home-hero { padding: 80px 20px 60px; }
+    .home-cards { flex-direction: column; align-items: center; }
+    .home-card { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="site-nav-brand">Protein Bar Blueprint</a>
+  <div class="site-nav-links">
+    <a href="product-blueprint.html">Product Blueprint v1.0</a>
+    <a href="manufacturing-roadmap.html">Manufacturing Roadmap</a>
+  </div>
+</nav>
+
+
+<div class="home-hero">
+  <div class="home-badge">Dark Chocolate Tahini Bar</div>
+  <h1>Protein Bar Blueprint</h1>
+  <div class="tagline">The complete product development playbook for a GLP-1-optimized, caffeinated, clean-label protein bar — from formulation to market.</div>
+
+  <div class="home-cards">
+    <a href="product-blueprint.html" class="home-card">
+      <div class="home-card-label">Document 01</div>
+      <div class="home-card-title">Product Blueprint v1.0</div>
+      <div class="home-card-desc">Formulation, nutrition profile, FDA-compliant labeling, nutrient claims, competitive analysis, and home prototype recipe.</div>
+      <div class="home-card-arrow">View Blueprint →</div>
+    </a>
+    <a href="manufacturing-roadmap.html" class="home-card">
+      <div class="home-card-label">Document 02</div>
+      <div class="home-card-title">Manufacturing Roadmap</div>
+      <div class="home-card-desc">Phase-by-phase path from kitchen to shelf — co-packer selection, funding strategy, timeline, and lessons from real founders.</div>
+      <div class="home-card-arrow">View Roadmap →</div>
+    </a>
+  </div>
+</div>
+
+</body>
+</html>
