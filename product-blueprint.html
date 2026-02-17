@@ -937,6 +937,163 @@
     }
   }
 
+
+  /* =============================================
+     ENHANCED MOBILE OPTIMIZATION
+     ============================================= */
+
+  /* Scrollable tables on mobile */
+  .table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0;
+  }
+
+  .table-wrap table {
+    margin: 0;
+    min-width: 500px;
+  }
+
+  @media (max-width: 700px) {
+    /* Nav */
+    .site-nav {
+      padding: 0 16px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+    .site-nav-brand {
+      padding: 12px 0 4px;
+      font-size: 15px;
+    }
+    .site-nav-links {
+      width: 100%;
+      padding-bottom: 6px;
+      gap: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .site-nav-links a {
+      padding: 8px 10px;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    /* Cover */
+    .cover { padding: 40px 20px 36px; }
+    .cover h1 { font-size: 28px; }
+    .cover .tagline { font-size: 14px; margin-bottom: 24px; }
+    .cover-badge { font-size: 10px; padding: 5px 12px; margin-bottom: 20px; }
+    .cover-stats { gap: 16px; }
+    .cover-stat .cs-value { font-size: 24px; }
+    .cover-stat .cs-label { font-size: 9px; letter-spacing: 1px; }
+
+    /* TOC */
+    .toc {
+      padding: 12px 16px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      flex-wrap: nowrap;
+      gap: 0;
+    }
+    .toc a {
+      font-size: 10px;
+      padding: 6px 10px;
+      white-space: nowrap;
+    }
+
+    /* Container and Sections */
+    .container { padding: 0 16px; }
+    .section { padding: 32px 0; }
+    .section h2 { font-size: 22px; margin-bottom: 14px; }
+    .section h3 { font-size: 15px; margin: 20px 0 10px; }
+    .section p { font-size: 14px; line-height: 1.65; }
+    .section-label { font-size: 10px; letter-spacing: 1.5px; }
+
+    /* Nutrition Facts */
+    .nf-wrapper { flex-direction: column; gap: 24px; }
+    .nf-label { width: 100%; max-width: 100%; }
+    .nf-sidebar { min-width: unset; }
+    .nf-sidebar h3 { font-size: 14px; }
+
+    /* Claims grid */
+    .claims-grid { grid-template-columns: 1fr; gap: 8px; }
+    .claim-box { padding: 12px; }
+    .claim-box .claim-nutrient { font-size: 15px; }
+
+    /* Front of Package Mockup */
+    .fop-mockup { padding: 24px 16px; }
+    .fop-product { font-size: 20px; }
+    .fop-claims { font-size: 14px; }
+    .fop-brand { font-size: 12px; }
+
+    /* Ingredient label */
+    .ingredient-label { padding: 14px; font-size: 13px; }
+
+    /* Ingredient grid */
+    .ingredient-grid { grid-template-columns: 1fr; }
+    .ing-item:nth-child(odd) { border-right: none; }
+    .ing-item { padding: 9px 12px; font-size: 13px; }
+    .ing-item .ing-amount { font-size: 11px; }
+
+    /* Competitor cards */
+    .comp-card { padding: 16px; margin: 12px 0; }
+    .comp-card::before { font-size: 9px; padding: 3px 8px; right: 12px; }
+    .comp-card-name { font-size: 17px; }
+    .comp-card-sub { font-size: 12px; }
+    .comp-card-stats { gap: 10px; margin-bottom: 10px; }
+    .comp-card-stat { min-width: 55px; }
+    .comp-card-stat .ccs-value { font-size: 18px; }
+    .comp-card-stat .ccs-label { font-size: 9px; }
+    .comp-verdict { font-size: 13px; }
+    .comp-strength, .comp-weakness { font-size: 10px; }
+
+    /* Yield box */
+    .yield-box { flex-wrap: wrap; }
+    .yield-item { flex: 1 1 30%; min-width: 80px; padding: 12px 8px; }
+    .yield-item .yi-value { font-size: 20px; }
+    .yield-item .yi-label { font-size: 9px; }
+    .yield-item .yi-note { font-size: 11px; }
+
+    /* Steps */
+    .step { padding: 12px; gap: 12px; }
+    .step-num { flex: 0 0 28px; height: 28px; font-size: 12px; }
+    .step-title { font-size: 14px; }
+    .step-detail { font-size: 13px; }
+
+    /* Eval grid */
+    .eval-grid { grid-template-columns: 1fr; gap: 8px; }
+    .eval-card { padding: 12px; }
+    .eval-card .ec-title { font-size: 13px; }
+    .eval-card .ec-body { font-size: 12px; }
+
+    /* Callout boxes */
+    .tip-box, .green-box, .warn-box { 
+      padding: 12px 14px; 
+      font-size: 13px; 
+      margin: 12px 0;
+    }
+
+    /* Tables (non-scrollable ones) */
+    table { font-size: 12px; }
+    table th { padding: 8px 10px; font-size: 10px; }
+    table td { padding: 8px 10px; font-size: 12px; }
+
+    /* Footer */
+    .footer { padding: 24px 16px; font-size: 11px; }
+  }
+
+  /* Extra small screens */
+  @media (max-width: 400px) {
+    .cover h1 { font-size: 24px; }
+    .cover-stats { gap: 12px; }
+    .cover-stat .cs-value { font-size: 20px; }
+    .fop-claims { font-size: 12px; }
+    .comp-card-stats { gap: 8px; }
+    .yield-item { flex: 1 1 45%; }
+  }
+
 </style>
 </head>
 <body>
@@ -1003,7 +1160,7 @@
 
   <p>Over 12 million Americans are currently prescribed GLP-1 medications (semaglutide, tirzepatide) for weight management. These drugs suppress appetite, reducing daily intake to 1,200–1,500 calories — creating a critical nutrition paradox: patients eat dramatically less while their bodies still require the same essential vitamins and minerals. Published research from ACLM, ASN, OMA, and TOS documents alarming deficiency rates across GLP-1 populations.</p>
 
-  <table>
+  <div class="table-wrap"><table>
     <thead>
       <tr>
         <th>Deficiency</th>
@@ -1056,7 +1213,7 @@
         <td>Not addressable via whole foods in bar format</td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <p><strong>Honest assessment:</strong> This bar meaningfully addresses 5 of 7 major GLP-1 deficiencies through whole-food sources alone. Vitamin D and potassium cannot be adequately concentrated in a 60g bar without synthetic fortification. The D2C subscription model creates an opportunity to bundle vitamin D drops or electrolyte packets as add-ons — addressing these gaps without compromising the bar's clean-label integrity.</p>
 
@@ -1072,7 +1229,7 @@
 
   <p>Every ingredient serves multiple functions — delivering protein, micronutrients, texture, or flavor. No filler. No isolates. No artificial anything. The bar achieves 29% of calories from protein using only whole foods.</p>
 
-  <table>
+  <div class="table-wrap"><table>
     <thead>
       <tr>
         <th>Ingredient</th>
@@ -1175,7 +1332,7 @@
         <td></td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <p style="font-size: 13px; color: var(--gray-500);">Nutritional values calculated from USDA FoodData Central. Actual values may vary ±5–10% based on ingredient sourcing. Final label requires third-party proximate analysis per 21 CFR § 101.9.</p>
 
@@ -1384,7 +1541,7 @@
 
   <!-- HEAD-TO-HEAD TABLE -->
   <h3>Head-to-Head Comparison</h3>
-  <table style="font-size: 13px;">
+  <div class="table-wrap"><table style="font-size: 13px;">
     <thead>
       <tr>
         <th>Metric</th>
@@ -1485,7 +1642,7 @@
         <td>No</td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <!-- INDIVIDUAL COMPETITOR CARDS -->
   <h3 style="margin-top: 36px;">Competitor Deep Dives</h3>
