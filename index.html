@@ -93,25 +93,6 @@
     border-bottom-color: var(--green);
   }
 
-  @media (max-width: 700px) {
-    .site-nav {
-      padding: 0 16px;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .site-nav-brand {
-      padding: 12px 0 4px;
-    }
-    .site-nav-links {
-      width: 100%;
-      padding-bottom: 4px;
-    }
-    .site-nav-links a {
-      padding: 8px 12px;
-      font-size: 11px;
-    }
-  }
-
 
   /* =============================================
      HOME PAGE
@@ -174,12 +155,12 @@
   }
 
   .home-cards {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
     position: relative;
     max-width: 720px;
+    width: 100%;
   }
 
   .home-card {
@@ -188,9 +169,6 @@
     border-radius: 12px;
     padding: 28px 24px;
     text-align: left;
-    flex: 1;
-    min-width: 280px;
-    max-width: 340px;
     text-decoration: none;
     color: var(--white);
     transition: all 0.2s;
@@ -237,12 +215,6 @@
     color: var(--white);
   }
 
-  @media (max-width: 700px) {
-    .home-hero { padding: 80px 20px 60px; }
-    .home-cards { flex-direction: column; align-items: center; }
-    .home-card { max-width: 100%; }
-  }
-
   /* =============================================
      ENHANCED MOBILE OPTIMIZATION
      ============================================= */
@@ -281,8 +253,8 @@
     .home-badge { font-size: 10px; padding: 5px 12px; margin-bottom: 24px; }
 
     /* Cards */
-    .home-cards { flex-direction: column; align-items: stretch; gap: 12px; max-width: 100%; }
-    .home-card { max-width: 100%; min-width: unset; padding: 20px; }
+    .home-cards { grid-template-columns: 1fr; gap: 12px; max-width: 100%; }
+    .home-card { padding: 20px; }
     .home-card-title { font-size: 19px; }
     .home-card-desc { font-size: 13px; }
     .home-card-label { font-size: 9px; }
@@ -301,7 +273,9 @@
 <nav class="site-nav">
   <a href="index.html" class="site-nav-brand">Protein Bar Blueprint</a>
   <div class="site-nav-links">
-    <a href="product-blueprint.html">Product Blueprint v1.0</a>
+    <a href="product-blueprint.html">Product Blueprint</a>
+    <a href="competitive-analysis.html">Competitive Analysis</a>
+    <a href="home-recipe.html">Home Recipe</a>
     <a href="manufacturing-roadmap.html">Manufacturing Roadmap</a>
   </div>
 </nav>
@@ -315,14 +289,26 @@
   <div class="home-cards">
     <a href="product-blueprint.html" class="home-card">
       <div class="home-card-label">Document 01</div>
-      <div class="home-card-title">Product Blueprint v1.0</div>
-      <div class="home-card-desc">Formulation, nutrition profile, FDA-compliant labeling, nutrient claims, competitive analysis, and home prototype recipe.</div>
+      <div class="home-card-title">Product Blueprint</div>
+      <div class="home-card-desc">Formulation, nutrition profile, FDA-compliant labeling, and nutrient claims.</div>
       <div class="home-card-arrow">View Blueprint →</div>
     </a>
-    <a href="manufacturing-roadmap.html" class="home-card">
+    <a href="competitive-analysis.html" class="home-card">
       <div class="home-card-label">Document 02</div>
+      <div class="home-card-title">Competitive Analysis</div>
+      <div class="home-card-desc">Head-to-head comparison against David, RXBAR, ALOHA, and Nestlé Vital Pursuit.</div>
+      <div class="home-card-arrow">View Analysis →</div>
+    </a>
+    <a href="home-recipe.html" class="home-card">
+      <div class="home-card-label">Document 03</div>
+      <div class="home-card-title">Home Recipe</div>
+      <div class="home-card-desc">8-bar prototype recipe with step-by-step method, evaluation criteria, and iteration roadmap.</div>
+      <div class="home-card-arrow">View Recipe →</div>
+    </a>
+    <a href="manufacturing-roadmap.html" class="home-card">
+      <div class="home-card-label">Document 04</div>
       <div class="home-card-title">Manufacturing Roadmap</div>
-      <div class="home-card-desc">Phase-by-phase path from kitchen to shelf — co-packer selection, funding strategy, timeline, and lessons from real founders.</div>
+      <div class="home-card-desc">Phase-by-phase path from kitchen to shelf — co-packer selection, funding strategy, and timeline.</div>
       <div class="home-card-arrow">View Roadmap →</div>
     </a>
   </div>
