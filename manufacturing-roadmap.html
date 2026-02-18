@@ -88,443 +88,78 @@
     line-height: 1.6;
   }
 
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 40px;
-  }
-
-  .section {
-    padding: 48px 0;
-    border-bottom: 1px solid var(--gray-300);
-  }
-
+  .container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+  .section { padding: 48px 0; border-bottom: 1px solid var(--gray-300); }
   .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+  .section h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 28px; font-weight: 400; margin-bottom: 20px; line-height: 1.3; }
+  .section h3 { font-size: 16px; font-weight: 700; margin: 28px 0 12px 0; }
+  .section p { font-size: 15px; color: var(--gray-700); margin-bottom: 14px; line-height: 1.7; }
 
-  .section-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--green);
-    margin-bottom: 8px;
-  }
+  .green-box { background: var(--green-light); border-left: 4px solid var(--green); padding: 14px 18px; margin: 16px 0; border-radius: 0 6px 6px 0; font-size: 14px; line-height: 1.6; }
+  .gold-box { background: var(--gold-light); border-left: 4px solid var(--gold); padding: 14px 18px; margin: 16px 0; border-radius: 0 6px 6px 0; font-size: 14px; line-height: 1.6; }
+  .warn-box { background: var(--red-light); border-left: 4px solid var(--red); padding: 14px 18px; margin: 16px 0; border-radius: 0 6px 6px 0; font-size: 14px; line-height: 1.6; }
+  .blue-box { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 14px 18px; margin: 16px 0; border-radius: 0 6px 6px 0; font-size: 14px; line-height: 1.6; }
 
-  .section h2 {
-    font-family: 'DM Serif Display', Georgia, serif;
-    font-size: 28px;
-    font-weight: 400;
-    margin-bottom: 20px;
-    line-height: 1.3;
-  }
+  .case-card { background: white; border: 1px solid var(--gray-300); border-radius: 10px; padding: 24px; margin: 16px 0; position: relative; }
+  .case-card::before { content: attr(data-label); position: absolute; top: -1px; right: 20px; background: var(--black); color: var(--white); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 12px; border-radius: 0 0 6px 6px; }
+  .case-card h4 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+  .case-card .case-sub { font-size: 13px; color: var(--gray-500); margin-bottom: 12px; }
+  .case-card p { font-size: 14px; color: var(--gray-700); line-height: 1.65; margin-bottom: 8px; }
+  .case-stats { display: flex; gap: 20px; flex-wrap: wrap; margin: 12px 0; }
+  .case-stat { text-align: center; min-width: 80px; }
+  .case-stat .cs-value { font-size: 22px; font-weight: 800; line-height: 1.2; }
+  .case-stat .cs-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray-500); }
 
-  .section h3 {
-    font-size: 16px;
-    font-weight: 700;
-    margin: 28px 0 12px 0;
-  }
+  .phase { background: white; border: 1px solid var(--gray-300); border-radius: 10px; padding: 24px; margin: 20px 0; position: relative; overflow: hidden; }
+  .phase::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--green); }
+  .phase-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+  .phase-number { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 4px; }
+  .phase h4 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+  .phase-meta { display: flex; gap: 16px; flex-wrap: wrap; }
+  .phase-tag { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 100px; white-space: nowrap; }
+  .tag-time { background: var(--blue-light); color: var(--blue); }
+  .tag-cost { background: var(--gold-light); color: var(--gold); }
+  .phase p { font-size: 14px; color: var(--gray-700); line-height: 1.65; margin-bottom: 8px; }
+  .phase ul { margin: 8px 0 8px 20px; font-size: 14px; color: var(--gray-700); line-height: 1.65; }
+  .phase ul li { margin-bottom: 6px; }
+  .phase .deliverable { font-size: 13px; font-weight: 600; color: var(--green); margin-top: 12px; padding-top: 8px; border-top: 1px solid var(--gray-200); }
 
-  .section p {
-    font-size: 15px;
-    color: var(--gray-700);
-    margin-bottom: 14px;
-    line-height: 1.7;
-  }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 16px 0; }
+  table th { background: var(--black); color: var(--white); padding: 10px 14px; text-align: left; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  table td { padding: 10px 14px; border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+  table tr:nth-child(even) td { background: var(--gray-100); }
+  table td.right { text-align: right; font-variant-numeric: tabular-nums; }
+  .source { font-size: 12px; color: var(--gray-500); font-style: italic; margin-top: 4px; }
 
-  .green-box {
-    background: var(--green-light);
-    border-left: 4px solid var(--green);
-    padding: 14px 18px;
-    margin: 16px 0;
-    border-radius: 0 6px 6px 0;
-    font-size: 14px;
-    line-height: 1.6;
-  }
+  .footer { max-width: 900px; margin: 40px auto; padding: 20px 40px; text-align: center; font-size: 12px; color: var(--gray-500); line-height: 1.6; }
 
-  .gold-box {
-    background: var(--gold-light);
-    border-left: 4px solid var(--gold);
-    padding: 14px 18px;
-    margin: 16px 0;
-    border-radius: 0 6px 6px 0;
-    font-size: 14px;
-    line-height: 1.6;
-  }
+  .site-nav { background: var(--white); border-bottom: 1px solid var(--gray-300); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 1000; }
+  .site-nav-brand { font-family: 'DM Serif Display', Georgia, serif; font-size: 16px; color: var(--black); text-decoration: none; padding: 14px 0; white-space: nowrap; }
+  .site-nav-brand:hover { color: var(--green); }
+  .site-nav-links { display: flex; gap: 0; }
+  .site-nav-links a { font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--gray-500); text-decoration: none; padding: 16px 16px; transition: all 0.15s; border-bottom: 2px solid transparent; }
+  .site-nav-links a:hover { color: var(--black); background: rgba(0,0,0,0.02); }
+  .site-nav-links a.active { color: var(--green); border-bottom-color: var(--green); }
 
-  .warn-box {
-    background: var(--red-light);
-    border-left: 4px solid var(--red);
-    padding: 14px 18px;
-    margin: 16px 0;
-    border-radius: 0 6px 6px 0;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  .blue-box {
-    background: var(--blue-light);
-    border-left: 4px solid var(--blue);
-    padding: 14px 18px;
-    margin: 16px 0;
-    border-radius: 0 6px 6px 0;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  /* Case Study Cards */
-  .case-card {
-    background: white;
-    border: 1px solid var(--gray-300);
-    border-radius: 10px;
-    padding: 24px;
-    margin: 16px 0;
-    position: relative;
-  }
-
-  .case-card::before {
-    content: attr(data-label);
-    position: absolute;
-    top: -1px;
-    right: 20px;
-    background: var(--black);
-    color: var(--white);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border-radius: 0 0 6px 6px;
-  }
-
-  .case-card h4 {
-    font-size: 18px;
-    font-weight: 800;
-    margin-bottom: 4px;
-  }
-
-  .case-card .case-sub {
-    font-size: 13px;
-    color: var(--gray-500);
-    margin-bottom: 12px;
-  }
-
-  .case-card p {
-    font-size: 14px;
-    color: var(--gray-700);
-    line-height: 1.65;
-    margin-bottom: 8px;
-  }
-
-  .case-stats {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin: 12px 0;
-  }
-
-  .case-stat {
-    text-align: center;
-    min-width: 80px;
-  }
-
-  .case-stat .cs-value {
-    font-size: 22px;
-    font-weight: 800;
-    line-height: 1.2;
-  }
-
-  .case-stat .cs-label {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    color: var(--gray-500);
-  }
-
-  /* Phase Timeline */
-  .phase {
-    background: white;
-    border: 1px solid var(--gray-300);
-    border-radius: 10px;
-    padding: 24px;
-    margin: 20px 0;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .phase::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--green);
-  }
-
-  .phase-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 12px;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .phase-number {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--green);
-    margin-bottom: 4px;
-  }
-
-  .phase h4 {
-    font-size: 18px;
-    font-weight: 800;
-    margin-bottom: 4px;
-  }
-
-  .phase-meta {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .phase-tag {
-    font-size: 12px;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 100px;
-    white-space: nowrap;
-  }
-
-  .tag-time {
-    background: var(--blue-light);
-    color: var(--blue);
-  }
-
-  .tag-cost {
-    background: var(--gold-light);
-    color: var(--gold);
-  }
-
-  .phase p {
-    font-size: 14px;
-    color: var(--gray-700);
-    line-height: 1.65;
-    margin-bottom: 8px;
-  }
-
-  .phase ul {
-    margin: 8px 0 8px 20px;
-    font-size: 14px;
-    color: var(--gray-700);
-    line-height: 1.65;
-  }
-
-  .phase ul li {
-    margin-bottom: 6px;
-  }
-
-  .phase .deliverable {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--green);
-    margin-top: 12px;
-    padding-top: 8px;
-    border-top: 1px solid var(--gray-200);
-  }
-
-  /* Tables */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-    margin: 16px 0;
-  }
-
-  table th {
-    background: var(--black);
-    color: var(--white);
-    padding: 10px 14px;
-    text-align: left;
-    font-weight: 600;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  table td {
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--gray-200);
-    vertical-align: top;
-  }
-
-  table tr:nth-child(even) td {
-    background: var(--gray-100);
-  }
-
-  table td.right {
-    text-align: right;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .source {
-    font-size: 12px;
-    color: var(--gray-500);
-    font-style: italic;
-    margin-top: 4px;
-  }
-
-  .footer {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px 40px;
-    text-align: center;
-    font-size: 12px;
-    color: var(--gray-500);
-    line-height: 1.6;
-  }
+  .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 16px 0; }
+  .table-wrap table { margin: 0; min-width: 500px; }
 
   @media (max-width: 700px) {
-    .cover { padding: 48px 20px 40px; }
-    .container { padding: 0 20px; }
-    .case-stats { gap: 12px; }
-    .phase-header { flex-direction: column; }
-  }
-
-  /* =============================================
-     SITE-WIDE NAVIGATION
-     ============================================= */
-  .site-nav {
-    background: var(--white);
-    border-bottom: 1px solid var(--gray-300);
-    padding: 0 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-
-  .site-nav-brand {
-    font-family: 'DM Serif Display', Georgia, serif;
-    font-size: 16px;
-    color: var(--black);
-    text-decoration: none;
-    padding: 14px 0;
-    white-space: nowrap;
-  }
-
-  .site-nav-brand:hover {
-    color: var(--green);
-  }
-
-  .site-nav-links {
-    display: flex;
-    gap: 0;
-  }
-
-  .site-nav-links a {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: var(--gray-500);
-    text-decoration: none;
-    padding: 16px 16px;
-    transition: all 0.15s;
-    border-bottom: 2px solid transparent;
-  }
-
-  .site-nav-links a:hover {
-    color: var(--black);
-    background: rgba(0,0,0,0.02);
-  }
-
-  .site-nav-links a.active {
-    color: var(--green);
-    border-bottom-color: var(--green);
-  }
-
-  @media (max-width: 700px) {
-    .site-nav {
-      padding: 0 16px;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .site-nav-brand {
-      padding: 12px 0 4px;
-    }
-    .site-nav-links {
-      width: 100%;
-      padding-bottom: 4px;
-    }
-    .site-nav-links a {
-      padding: 8px 12px;
-      font-size: 11px;
-    }
-  }
-
-
-  /* =============================================
-     ENHANCED MOBILE OPTIMIZATION
-     ============================================= */
-
-  .table-wrap {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin: 16px 0;
-  }
-
-  .table-wrap table {
-    margin: 0;
-    min-width: 500px;
-  }
-
-  @media (max-width: 700px) {
-    /* Nav */
-    .site-nav {
-      padding: 0 16px;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0;
-    }
-    .site-nav-brand {
-      padding: 12px 0 4px;
-      font-size: 15px;
-    }
-    .site-nav-links {
-      width: 100%;
-      padding-bottom: 6px;
-      gap: 0;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .site-nav-links a {
-      padding: 8px 10px;
-      font-size: 10px;
-      white-space: nowrap;
-    }
-
-    /* Cover */
+    .site-nav { padding: 0 16px; flex-direction: column; align-items: flex-start; gap: 0; }
+    .site-nav-brand { padding: 12px 0 4px; font-size: 15px; }
+    .site-nav-links { width: 100%; padding-bottom: 6px; gap: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .site-nav-links a { padding: 8px 10px; font-size: 10px; white-space: nowrap; }
     .cover { padding: 40px 20px 36px; }
     .cover h1 { font-size: 28px; }
     .cover .tagline { font-size: 14px; margin-bottom: 24px; }
     .cover-badge { font-size: 10px; padding: 5px 12px; margin-bottom: 20px; }
-
-    /* Container and Sections */
     .container { padding: 0 16px; }
     .section { padding: 32px 0; }
     .section h2 { font-size: 22px; margin-bottom: 14px; }
     .section h3 { font-size: 15px; margin: 20px 0 10px; }
     .section p { font-size: 14px; line-height: 1.65; }
     .section-label { font-size: 10px; letter-spacing: 1.5px; }
-
-    /* Case study cards */
     .case-card { padding: 16px; margin: 12px 0; }
     .case-card::before { font-size: 9px; padding: 3px 8px; right: 12px; }
     .case-card h4 { font-size: 16px; }
@@ -534,8 +169,6 @@
     .case-stat { min-width: 60px; }
     .case-stat .cs-value { font-size: 18px; }
     .case-stat .cs-label { font-size: 9px; }
-
-    /* Phase cards */
     .phase { padding: 16px; margin: 14px 0; }
     .phase-header { flex-direction: column; gap: 8px; }
     .phase-number { font-size: 10px; }
@@ -546,23 +179,11 @@
     .phase ul { font-size: 13px; margin-left: 16px; }
     .phase ul li { margin-bottom: 6px; }
     .phase .deliverable { font-size: 12px; }
-
-    /* Callout boxes */
-    .green-box, .gold-box, .warn-box, .blue-box {
-      padding: 12px 14px;
-      font-size: 13px;
-      margin: 12px 0;
-    }
-
-    /* Tables */
+    .green-box, .gold-box, .warn-box, .blue-box { padding: 12px 14px; font-size: 13px; margin: 12px 0; }
     table { font-size: 12px; }
     table th { padding: 8px 10px; font-size: 10px; }
     table td { padding: 8px 10px; font-size: 12px; }
-
-    /* Source */
     .source { font-size: 11px; }
-
-    /* Footer */
     .footer { padding: 20px 16px; font-size: 11px; }
   }
 
@@ -571,7 +192,6 @@
     .case-stat .cs-value { font-size: 16px; }
     .phase h4 { font-size: 15px; }
   }
-
 </style>
 </head>
 <body>
@@ -585,18 +205,15 @@
   </div>
 </nav>
 
-
 <div class="cover">
-  <div class="cover-badge">Manufacturing Roadmap v1.0</div>
+  <div class="cover-badge">Manufacturing Roadmap v1.1</div>
   <h1>From Kitchen to Shelf</h1>
-  <div class="tagline">A research-backed, phase-by-phase roadmap for manufacturing the Dark Chocolate Tahini Bar — modeled on how real protein bar founders went from home recipes to commercial production.</div>
+  <div class="tagline">A research-backed, phase-by-phase roadmap for manufacturing the Dark Chocolate Tahini Bar &mdash; modeled on how real protein bar founders went from home recipes to commercial production.</div>
 </div>
 
 <div class="container">
 
-<!-- ========================================
-     SECTION 1: HOW OTHERS DID IT
-     ======================================== -->
+<!-- SECTION 1: HOW OTHERS DID IT -->
 <div class="section">
   <div class="section-label">Section 01</div>
   <h2>How Other Protein Bar Companies Did It</h2>
@@ -605,37 +222,37 @@
 
   <div class="case-card" data-label="Most Relevant Precedent">
     <h4>RXBAR</h4>
-    <div class="case-sub">Founded 2012–2013 · Sold to Kellogg for $600M in 2017</div>
+    <div class="case-sub">Founded 2012&ndash;2013 &middot; Sold to Kellogg for $600M in 2017</div>
     <div class="case-stats">
       <div class="case-stat"><div class="cs-value">$10K</div><div class="cs-label">Startup Capital</div></div>
       <div class="case-stat"><div class="cs-value">0</div><div class="cs-label">Outside Investors</div></div>
       <div class="case-stat"><div class="cs-value">$600K</div><div class="cs-label">Year 1 Revenue</div></div>
       <div class="case-stat"><div class="cs-value">$600M</div><div class="cs-label">Exit (Year 5)</div></div>
     </div>
-    <p><strong>The actual path:</strong> Peter Rahal and Jared Smith each put in $5,000. They made bars by hand in Rahal's parents' basement in Glen Ellyn, Illinois using a red KitchenAid mixer. Over 100 recipe iterations preceded the final formula. They designed labels in Microsoft PowerPoint, printed them, and hand-applied them — enlisting their mothers to help (Rahal famously fired his own mother for misaligning labels). They did not raise outside capital. Rahal's father, a food industry executive, told them: "You guys need to shut the fuck up and just sell a thousand bars." That became the company's philosophy.</p>
-    <p><strong>Go-to-market:</strong> They sold door-to-door to CrossFit gyms and directly online. For the first two full years, RXBAR was not in a single traditional retail store. They focused exclusively on CrossFit gyms (a niche community with high trust) and direct e-commerce. This gave them immediate cash collection (no net-60 retailer terms) and obsessive customer feedback. When the basement operation could no longer keep up with demand, they moved to a commercial kitchen, then to a co-packer. The iconic "No B.S." front-of-package redesign came in late 2014, two years after founding. Whole Foods began carrying them in 2015.</p>
-    <p><strong>Key lesson for you:</strong> Rahal's family had food manufacturing connections that helped with ingredient sourcing, but the operating model was pure bootstrap. The $10K covered ingredients, packaging materials, and basic supplies. They did not need manufacturing equipment because they made bars by hand. They proved demand before scaling production.</p>
+    <p><strong>The actual path:</strong> Peter Rahal and Jared Smith each put in $5,000. They made bars by hand in Rahal&rsquo;s parents&rsquo; basement in Glen Ellyn, Illinois using a red KitchenAid mixer. Over 100 recipe iterations preceded the final formula. They designed labels in Microsoft PowerPoint, printed them, and hand-applied them &mdash; enlisting their mothers to help (Rahal famously fired his own mother for misaligning labels). They did not raise outside capital. Rahal&rsquo;s father, a food industry executive, told them: &ldquo;You guys need to shut the fuck up and just sell a thousand bars.&rdquo; That became the company&rsquo;s philosophy.</p>
+    <p><strong>Go-to-market:</strong> They sold door-to-door to CrossFit gyms and directly online. For the first two full years, RXBAR was not in a single traditional retail store. They focused exclusively on CrossFit gyms (a niche community with high trust) and direct e-commerce. This gave them immediate cash collection (no net-60 retailer terms) and obsessive customer feedback. When the basement operation could no longer keep up with demand, they moved to a commercial kitchen, then to a co-packer. The iconic &ldquo;No B.S.&rdquo; front-of-package redesign came in late 2014, two years after founding. Whole Foods began carrying them in 2015.</p>
+    <p><strong>Key lesson for you:</strong> Rahal&rsquo;s family had food manufacturing connections that helped with ingredient sourcing, but the operating model was pure bootstrap. The $10K covered ingredients, packaging materials, and basic supplies. They did not need manufacturing equipment because they made bars by hand. They proved demand before scaling production.</p>
     <div class="source">Sources: Inc. Magazine, Food Business News, CNBC, Entrepreneur, How I Built This Podcast</div>
   </div>
 
   <div class="case-card" data-label="Funded Approach">
     <h4>David Protein</h4>
-    <div class="case-sub">Founded 2024 · Peter Rahal's second company</div>
+    <div class="case-sub">Founded 2024 &middot; Peter Rahal&rsquo;s second company</div>
     <div class="case-stats">
       <div class="case-stat"><div class="cs-value">$10M</div><div class="cs-label">Seed Round</div></div>
       <div class="case-stat"><div class="cs-value">$75M</div><div class="cs-label">Series A</div></div>
       <div class="case-stat"><div class="cs-value">3,000+</div><div class="cs-label">Stores (8 Months)</div></div>
       <div class="case-stat"><div class="cs-value">$725M</div><div class="cs-label">Valuation</div></div>
     </div>
-    <p><strong>The actual path:</strong> David is the opposite of RXBAR's bootstrap story. Rahal raised a $10 million seed round in August 2024, backed by Valor Siren Ventures, Dr. Peter Attia, and Andrew Huberman, before the bars had shipped a single unit. The brand launched online in September 2024, expanded to Amazon, then entered brick-and-mortar retail. Within eight months it was in over 3,000 stores. A $75M Series A followed in May 2025, valuing the company at $725 million.</p>
+    <p><strong>The actual path:</strong> David is the opposite of RXBAR&rsquo;s bootstrap story. Rahal raised a $10 million seed round in August 2024, backed by Valor Siren Ventures, Dr. Peter Attia, and Andrew Huberman, before the bars had shipped a single unit. The brand launched online in September 2024, expanded to Amazon, then entered brick-and-mortar retail. Within eight months it was in over 3,000 stores. A $75M Series A followed in May 2025, valuing the company at $725 million.</p>
     <p><strong>Why this path was possible:</strong> Rahal had a $600M exit on his track record. He had spent years advising food startups through Litani Ventures. Investors were essentially betting on a proven operator with deep industry relationships. This is not replicable for a first-time founder without a track record or existing investor network.</p>
-    <p><strong>Key lesson for you:</strong> Do not model your funding strategy on David. The David path exists because Rahal already proved he could do it at RXBAR. What you should take from David is the go-to-market sequencing: DTC first, then Amazon, then retail. Rahal himself said this about David's launch strategy: "It's good to establish supply chain and build good relationships with consumers directly, then it sets you up for success for retail."</p>
+    <p><strong>Key lesson for you:</strong> Do not model your funding strategy on David. The David path exists because Rahal already proved he could do it at RXBAR. What you should take from David is the go-to-market sequencing: DTC first, then Amazon, then retail. Rahal himself said this about David&rsquo;s launch strategy: &ldquo;It&rsquo;s good to establish supply chain and build good relationships with consumers directly, then it sets you up for success for retail.&rdquo;</p>
     <div class="source">Sources: Food Dive, BusinessWire, AgFunderNews, Food Business News</div>
   </div>
 
   <div class="case-card" data-label="Bootstrapped + Scrappy">
     <h4>Siren Snacks</h4>
-    <div class="case-sub">Founded in a dorm room · Now in 7,000+ stores including Whole Foods, Target, CVS</div>
+    <div class="case-sub">Founded in a dorm room &middot; Now in 7,000+ stores including Whole Foods, Target, CVS</div>
     <div class="case-stats">
       <div class="case-stat"><div class="cs-value">$40K</div><div class="cs-label">Startup Capital</div></div>
       <div class="case-stat"><div class="cs-value">4</div><div class="cs-label">Team Members</div></div>
@@ -648,394 +265,370 @@
   </div>
 
   <div class="green-box">
-    <strong>The pattern across all three:</strong> Every successful protein bar company — whether bootstrapped on $10K or backed by $10M — started by making the product, getting it into people's hands, and collecting feedback before investing heavily in production. RXBAR sold to CrossFit gyms. David sold DTC online. Siren Snacks sold direct. None launched straight into retail. The lesson is unambiguous: prove the product sells before spending on manufacturing.
+    <strong>The pattern across all three:</strong> Every successful protein bar company &mdash; whether bootstrapped on $10K or backed by $10M &mdash; started by making the product, getting it into people&rsquo;s hands, and collecting feedback before investing heavily in production. RXBAR sold to CrossFit gyms. David sold DTC online. Siren Snacks sold direct. None launched straight into retail. The lesson is unambiguous: prove the product sells before spending on manufacturing.
   </div>
 </div>
 
-<!-- ========================================
-     SECTION 2: YOUR PATH - PHASE BY PHASE
-     ======================================== -->
+<!-- SECTION 2: PHASE-BY-PHASE ROADMAP -->
 <div class="section">
   <div class="section-label">Section 02</div>
-  <h2>Your Path: Phase-by-Phase Roadmap</h2>
+  <h2>Your Phase-by-Phase Roadmap</h2>
 
-  <p>Based on what worked (and what failed) across dozens of protein bar startups, here is the standard path from validated home recipe to commercial production. Every timeline and cost figure below is drawn from real-world industry data — not estimates. Where data points conflict across sources, I have noted the range.</p>
+  <p>This is the specific manufacturing path for the Dark Chocolate Tahini Bar. Each phase has a clear objective, a defined budget, and a concrete deliverable that unlocks the next phase. Do not skip phases or combine them. The order exists for a reason: every step de-risks the next one.</p>
 
+  <!-- PHASE 1 -->
   <div class="phase">
-    <div class="phase-number">Phase 1</div>
     <div class="phase-header">
       <div>
-        <h4>Lock the Recipe &amp; Gather Real Feedback</h4>
+        <div class="phase-number">Phase 1</div>
+        <h4>Lock the Recipe</h4>
       </div>
       <div class="phase-meta">
-        <span class="phase-tag tag-time">2–4 Weeks</span>
-        <span class="phase-tag tag-cost">$100–$300</span>
+        <span class="phase-tag tag-time">2&ndash;3 Weeks</span>
+        <span class="phase-tag tag-cost">$250&ndash;$450</span>
       </div>
     </div>
-    <p><strong>Where you are now.</strong> You have a formulated recipe and a home prototype. The blueprint calls for 3 batches: Batch 1 as-written, Batch 2 adjusted, Batch 3 locked. This is your current step.</p>
-    <p><strong>What to do:</strong></p>
+    <p><strong>Objective:</strong> Produce a bar you would confidently hand to a stranger and ask them to pay $3.50 for. This means nailing taste, texture, sweetness, and structural integrity across 5 systematic test batches.</p>
+    <p><strong>Why 5 batches:</strong> The product blueprint specifies 5 batches of 8 bars each (40 bars total). Each batch should change only 1&ndash;2 variables so you can isolate what works. Batch 1 is your baseline recipe as written. Batches 2&ndash;4 test specific adjustments (sweetener level, protein ratio, binding moisture). Batch 5 is your &ldquo;final candidate&rdquo; incorporating the best elements from prior rounds.</p>
+
+    <h3>What to Do</h3>
     <ul>
-      <li>Make 3–5 batches, adjusting 1–2 variables per batch (salt, tahini ratio, date sweetness). RXBAR went through over 100 recipe iterations before locking their formula. You don't need 100, but do not rush past 3.</li>
-      <li>Get unbiased feedback. Friends and family will be polite. You need brutally honest tasters. Seek out people who are actually on GLP-1 medications — they are your target customer, and their reduced appetite and altered taste sensitivity will give you data no one else can. Find them in online communities (Reddit r/Ozempic, r/semaglutide, Facebook GLP-1 groups).</li>
-      <li>Document everything: exact weights, mixing times, refrigeration duration, and feedback notes. This documentation becomes the reference recipe you hand to a co-packer.</li>
+      <li><strong>Make 5 batches of 8 bars</strong> following the Home Recipe page. Log every variable: ingredient weights (use a digital scale, not measuring cups), mixing time, refrigeration duration, and ambient temperature.</li>
+      <li><strong>Test each batch blind</strong> with at least 3&ndash;5 people who are not family. Ask specific questions: &ldquo;Would you buy this for $3.50?&rdquo; &ldquo;Is this too sweet, not sweet enough, or just right?&rdquo; &ldquo;How does this compare to [RXBAR / KIND / Quest]?&rdquo;</li>
+      <li><strong>Document shelf life.</strong> Keep one bar from each batch at room temperature and check daily for texture changes, oil separation, or staleness. Note the day quality drops noticeably. Target: 7+ days at room temp without degradation.</li>
+      <li><strong>Do not rush this phase.</strong> RXBAR went through over 100 recipe iterations. You are doing 5 structured batches, which is the minimum needed to validate the formula. If batch 5 still has issues, make a 6th. The cost of additional batches is ~$12&ndash;$16 in ingredients.</li>
     </ul>
-    <p><strong>Cost breakdown:</strong> Ingredients for 5 batches of 8 bars (40 bars total) will run approximately $100–$200 depending on ingredient sourcing. Egg white protein powder and collagen peptides are the most expensive per-gram components. Add $50–$100 for packaging materials if you want to present them properly for taste testing.</p>
-    <div class="deliverable">✓ Deliverable: A locked reference recipe with documented weights, a sensory feedback log from 10+ tasters (at least 3 GLP-1 users), and a clear decision on the final flavor profile.</div>
+
+    <h3>Cost Breakdown</h3>
+    <ul>
+      <li><strong>Equipment (one-time):</strong> Food processor (~$130), digital food scale (~$25), mixing bowls, silicone molds, parchment paper, storage containers (~$50&ndash;$100). <em>Total equipment: $205&ndash;$255.</em></li>
+      <li><strong>Ingredients for 5 batches of 8 bars:</strong> At approximately $1.42 per bar in retail ingredient costs (egg white protein ~$1.00&ndash;$1.50/lb, collagen peptides ~$0.90&ndash;$1.30/lb, Medjool dates, tahini, almond butter, cacao, pumpkin seeds), expect $60&ndash;$80 total for 40 bars. You will need to purchase full containers of each ingredient, so actual out-of-pocket will be toward the higher end.</li>
+      <li><strong>Packaging for testing:</strong> Wax paper wraps, zip-lock bags, labels (~$15&ndash;$25).</li>
+    </ul>
+
+    <div class="gold-box">
+      <strong>Total Phase 1 Budget: $250&ndash;$450.</strong> This includes all equipment purchases. If you already own a food processor and scale, the cost drops to roughly $75&ndash;$105 for ingredients and packaging alone. Equipment is a one-time investment that carries through Phase 2.
+    </div>
+
+    <div class="deliverable">&check; Deliverable: A finalized recipe with documented weights, process notes, and feedback from 15&ndash;25 taste testers confirming the bar is worth paying for.</div>
   </div>
 
+  <!-- PHASE 2 -->
   <div class="phase">
-    <div class="phase-number">Phase 2</div>
     <div class="phase-header">
       <div>
-        <h4>Move to a Commercial Kitchen &amp; Produce Your First Sellable Batch</h4>
+        <div class="phase-number">Phase 2</div>
+        <h4>Go Commercial</h4>
       </div>
       <div class="phase-meta">
-        <span class="phase-tag tag-time">2–6 Weeks</span>
-        <span class="phase-tag tag-cost">$1,000–$3,500</span>
+        <span class="phase-tag tag-time">4&ndash;8 Weeks</span>
+        <span class="phase-tag tag-cost">$2,000&ndash;$5,500</span>
       </div>
     </div>
-    <p><strong>Why you cannot sell bars made at home.</strong> In the United States, most states require food produced for commercial sale to be made in a licensed, inspected commercial kitchen. Some states have cottage food laws that permit home-based food sales, but these typically restrict sales to direct-to-consumer at farmers markets and often cap annual revenue (commonly at $25,000–$75,000 depending on the state). For a bar with egg white protein and collagen, you will almost certainly need a commercial facility due to allergen handling requirements. Check your specific state's cottage food regulations to confirm.</p>
-    <p><strong>Shared commercial kitchens</strong> are the standard solution at this stage. They are fully licensed, health-department inspected facilities that rent by the hour. Rates across the U.S. typically run $15–$45 per hour in most markets, with major metro areas (New York, San Francisco, Los Angeles) reaching $50–$75+. In Austin, Texas, expect $15–$30 per hour based on available listings from facilities like Capital Kitchens. Many offer monthly membership plans with discounted hourly rates.</p>
-    <p><strong>What to do:</strong></p>
+    <p><strong>Objective:</strong> Produce 200+ bars in a licensed commercial kitchen with proper food safety compliance, a real nutrition label, and professional packaging. This is the phase where you go from &ldquo;I made this in my kitchen&rdquo; to &ldquo;this is a legitimate food product.&rdquo;</p>
+
+    <h3>Commercial Kitchen Options in Austin</h3>
     <ul>
-      <li>Locate a shared commercial kitchen in your area. Search The Kitchen Door, your local SCORE chapter, or simply Google "shared commercial kitchen [your city]." Incubator kitchens specifically designed for food startups often offer mentorship and business support in addition to kitchen access.</li>
-      <li>Obtain required permits: a Food Handler's Permit (typically $10–$15), a Food Enterprise Permit or equivalent (varies by locality, $50–$300), and general commercial liability insurance ($500–$2,000/year, often required by the kitchen).</li>
-      <li>Produce a batch of 100–200 bars. This is your first "production run." These are what you will use to test the market. At roughly $1.50–$2.50 in ingredient cost per bar, 200 bars runs $300–$500 in ingredients alone.</li>
-      <li>Design simple, compliant labels. At this stage you do not need custom-printed packaging. You can use a service like Avery or Canva for printed adhesive labels. Your label must include: product name, net weight, ingredient statement in descending order by weight, allergen declaration, nutrition facts panel, manufacturer name and address, and the caffeine advisory. A third-party nutritional analysis (required by FDA under 21 CFR § 101.9) will cost $300–$800 per SKU through labs like Covance, Eurofins, or Medallion Labs.</li>
+      <li><strong>Capital Kitchens Austin:</strong> $33/hr for the main kitchen, $29/hr for prep-only space. Requires a 12-hour monthly minimum (~$396/month). Located in Austin. Best option for getting started with hourly flexibility.</li>
+      <li><strong>PREP ATX:</strong> Shared and private kitchen memberships with 24/7 access, cold/dry storage, and full equipment. Private kitchens range from ~450 sq ft to 4,500+ sq ft. Licensed as a Central Preparation Facility. Pricing varies by membership term &mdash; contact directly for current rates.</li>
+      <li><strong>Wingman Kitchens:</strong> Flexible hourly and monthly rates. Another Austin option worth getting a quote from to compare.</li>
     </ul>
-    <p><strong>This is exactly what RXBAR did.</strong> Rahal and Smith made bars by hand, designed labels in PowerPoint, and started selling. The commercial kitchen is your version of their parents' basement — it is just legally compliant.</p>
-    <div class="deliverable">✓ Deliverable: 100–200 commercially sellable bars with compliant labels, third-party nutritional analysis completed, food handling permits obtained.</div>
+
+    <h3>Permits, Licensing &amp; Insurance (Austin, TX)</h3>
+    <ul>
+      <li><strong>Texas Food Handler Certification:</strong> $7&ndash;$15 per person. Valid for 2 years. Required before handling food commercially.</li>
+      <li><strong>City of Austin Food Enterprise Permit:</strong> $200&ndash;$400 for startups under $150K in annual sales (tiered fee system effective October 2025). This is your primary operating permit.</li>
+      <li><strong>Pre-opening health inspection:</strong> $178 (required before you can legally sell). Re-inspection fee is $134 if corrections are needed.</li>
+      <li><strong>Commercial General Liability Insurance:</strong> $1,000&ndash;$2,000/year for a food startup. Required by most commercial kitchens and essential for selling at markets or DTC. Product liability coverage is the key component. Get quotes from at least 3 providers &mdash; bundling policies can reduce costs 15&ndash;23%.</li>
+    </ul>
+
+    <h3>Nutritional Analysis</h3>
+    <ul>
+      <li><strong>Database analysis (e.g., ReciPal):</strong> ~$19 per label. Uses USDA nutrient databases to calculate your Nutrition Facts panel from ingredient data. Acceptable for initial labeling.</li>
+      <li><strong>Lab testing (recommended before scaling):</strong> $250&ndash;$800 per SKU. Labs like Medallion Labs, NutriData, or Food Lab Inc. perform actual chemical analysis. More accurate and defensible if you make nutrient claims.</li>
+      <li><strong>Label design/formatting:</strong> $50&ndash;$150 if done by a freelancer. You can also use ReciPal or FDA-compliant templates.</li>
+    </ul>
+
+    <h3>What to Do</h3>
+    <ul>
+      <li><strong>Book commercial kitchen time.</strong> Budget 20&ndash;40 hours for your first 200-bar production run. At Capital Kitchens rates ($33/hr), that is $660&ndash;$1,320.</li>
+      <li><strong>Get your permits in order before booking kitchen time.</strong> The Food Handler Cert can be done online in a day. The Food Enterprise Permit and pre-opening inspection take longer &mdash; start the application immediately.</li>
+      <li><strong>Produce 200+ bars</strong> in a commercial kitchen using your Phase 1 recipe. These are the bars you will actually sell.</li>
+      <li><strong>Get a nutrition label.</strong> Start with a database analysis for speed, but plan for lab testing before your co-packer phase.</li>
+      <li><strong>Design and print packaging.</strong> At this scale, printed labels on kraft or mylar pouches are cost-effective. Budget $100&ndash;$300 for short-run labels and pouches.</li>
+    </ul>
+
+    <h3>Cost Breakdown</h3>
+    <ul>
+      <li>Commercial kitchen time (20&ndash;40 hrs): $660&ndash;$1,320</li>
+      <li>Ingredients for 200 bars (~$1.42/bar + waste): $300&ndash;$500</li>
+      <li>Food Enterprise Permit + inspection: $378&ndash;$578</li>
+      <li>Insurance (annual): $1,000&ndash;$2,000</li>
+      <li>Nutritional analysis: $250&ndash;$800</li>
+      <li>Packaging and labels: $100&ndash;$300</li>
+    </ul>
+
+    <div class="gold-box">
+      <strong>Total Phase 2 Budget: $2,000&ndash;$5,500.</strong> The wide range reflects whether you opt for basic database nutritional analysis vs. lab testing, and how many kitchen hours your production requires. Insurance is the largest single line item but is non-negotiable &mdash; you cannot sell food products without it.
+    </div>
+
+    <div class="warn-box">
+      <strong>Austin-specific note:</strong> The City of Austin implemented a new tiered Food Enterprise Permit fee structure effective October 1, 2025. Fees are based on annual sales volume. For a startup under $150K in sales, expect $200&ndash;$400. Verify current fees with Austin Public Health before budgeting.
+    </div>
+
+    <div class="deliverable">&check; Deliverable: 200+ professionally packaged bars with a compliant nutrition label, produced in a licensed facility, legally ready to sell.</div>
   </div>
 
+  <!-- PHASE 3 -->
   <div class="phase">
-    <div class="phase-number">Phase 3</div>
     <div class="phase-header">
       <div>
-        <h4>Sell Direct — Prove Demand Before You Scale</h4>
+        <div class="phase-number">Phase 3</div>
+        <h4>Build the Brand &amp; Sell Direct</h4>
       </div>
       <div class="phase-meta">
-        <span class="phase-tag tag-time">1–3 Months</span>
-        <span class="phase-tag tag-cost">$500–$2,000</span>
+        <span class="phase-tag tag-time">4&ndash;6 Weeks</span>
+        <span class="phase-tag tag-cost">$500&ndash;$2,000</span>
       </div>
     </div>
-    <p><strong>This is the most important phase.</strong> More food startups die from scaling prematurely than from any other cause. The classic mistake, documented repeatedly across CPG failure analyses, is investing in large manufacturing runs before proving that customers will actually buy the product at the price point you need.</p>
-    <p><strong>What "proving demand" actually means:</strong></p>
+    <p><strong>Objective:</strong> Establish a brand identity, build a basic online presence, and start generating real revenue through direct-to-consumer sales. This is where you validate that people will pay for your product &mdash; not just say they like it.</p>
+
+    <h3>What to Do</h3>
     <ul>
-      <li><strong>Sell at least 500–1,000 bars to strangers.</strong> Not friends. Not family. People who have no social obligation to support you. Friends and family will buy once out of kindness. Strangers will buy because the product solves their problem.</li>
-      <li><strong>Measure repeat purchases.</strong> First-time sales tell you your marketing works. Repeat purchases tell you the product works. If you sell 500 bars and fewer than 20% of buyers come back for a second purchase, you have a recipe problem, a price problem, or a positioning problem — and you need to fix it before spending on manufacturing.</li>
-      <li><strong>Target your actual customer.</strong> Your customer is a person on GLP-1 medication who is calorie-restricted and nutrient-depleted. You need to get bars into their hands specifically.</li>
+      <li><strong>Name and visual identity.</strong> Finalize brand name, logo, and color palette. You can use a freelance designer ($200&ndash;$500) or design tools like Canva for an MVP brand. Do not overthink this &mdash; RXBAR launched with PowerPoint labels.</li>
+      <li><strong>Build a simple DTC website.</strong> Shopify ($39/month) or a one-page site. Include your story, the product, the nutrition facts, and a buy button. That is all you need to start.</li>
+      <li><strong>Sell at local markets and events.</strong> Austin has a strong farmers&rsquo; market scene. This gives you face-to-face feedback, immediate cash flow, and zero customer acquisition cost. Look into SFC Farmers&rsquo; Market, Texas Farmers&rsquo; Market, and Hope Farmers Market.</li>
+      <li><strong>Sell to your niche community directly.</strong> For a GLP-1 bar, your niche is GLP-1 user communities. Engage on Reddit (r/Ozempic, r/semaglutide, r/tirzepatide), GLP-1 focused Facebook groups, and TikTok. Post content about your product development journey &mdash; people love watching founders build in public.</li>
+      <li><strong>Collect structured feedback.</strong> Use a simple Google Form with every sale. Ask: satisfaction rating, repurchase intent, price sensitivity, and how they heard about you.</li>
     </ul>
-    <p><strong>Channels to sell through at this stage:</strong></p>
+
+    <h3>Cost Breakdown</h3>
     <ul>
-      <li><strong>Direct-to-consumer website (Shopify):</strong> Set up a basic Shopify store ($39/month). This is your DTC channel. It gives you customer data, email addresses, and full margin. RXBAR started here, David started here, Siren Snacks started here.</li>
-      <li><strong>GLP-1 online communities:</strong> Your unique advantage. There are massive, active communities of GLP-1 users on Reddit, Facebook, TikTok, and Instagram. These are people actively seeking food solutions. A few authentic posts showing what you built — and why — could generate real inbound demand. This is not a channel that RXBAR or David had available. You do.</li>
-      <li><strong>Local health-focused retail:</strong> Independent health food stores, functional medicine clinics, endocrinology and weight management clinic waiting rooms, boutique gyms, and yoga studios. These are the equivalent of RXBAR's CrossFit gyms. Walk in, ask to speak to the owner, offer a free sample box. If they agree to stock on consignment, you pay nothing upfront and split revenue. This is exactly what Rahal did.</li>
-      <li><strong>Farmers markets:</strong> Low barrier to entry (booth fees are typically $25–$75/day). You get face-to-face customer feedback and immediate cash.</li>
+      <li>Brand identity (logo, packaging design): $200&ndash;$800</li>
+      <li>Website setup (Shopify or equivalent): $50&ndash;$200</li>
+      <li>Farmers&rsquo; market booth fees: $50&ndash;$200 per market</li>
+      <li>Initial digital marketing/content creation: $100&ndash;$500</li>
+      <li>Feedback tools and surveys: $0&ndash;$50</li>
     </ul>
-    <p><strong>Cost at this stage:</strong> Shopify ($39/month), a domain name (~$12/year), basic packaging materials, continued commercial kitchen time for production batches, and a small amount for sampling and marketing materials. You are not running paid ads yet. You are handselling and using organic community engagement.</p>
-    <div class="deliverable">✓ Deliverable: 500+ bars sold to non-friends/family, documented repeat purchase rate, customer feedback data, at least one local retail placement, and a functioning DTC website with email collection.</div>
+
+    <div class="gold-box">
+      <strong>Total Phase 3 Budget: $500&ndash;$2,000.</strong> The goal is not to spend heavily on marketing yet. The goal is to prove demand with minimal spend. If you are selling out at farmers&rsquo; markets and getting repeat online orders, you have validation. If you are not, the recipe or positioning needs work &mdash; not more ad spend.
+    </div>
+
+    <div class="green-box">
+      <strong>Revenue target:</strong> Sell your first 200 bars. At $3.50/bar retail, that is $700 in gross revenue. This is not about profit &mdash; it is about proving someone will hand you money for this product.
+    </div>
+
+    <div class="deliverable">&check; Deliverable: A functioning brand with a live sales channel, 200+ bars sold, and documented customer feedback proving purchase intent.</div>
   </div>
 
-  <div class="warn-box">
-    <strong>The #1 mistake at this stage:</strong> Skipping Phase 3 and going straight to a co-packer. Industry analysts consistently identify premature scaling as a leading cause of food startup failure. If you sign a co-packer contract for 10,000+ bars without proven demand, you risk sitting on thousands of dollars of perishable inventory with no path to sell it. The co-packer does not care if your bars sell — they have already been paid. Prove demand first.
-  </div>
-
+  <!-- PHASE 4 -->
   <div class="phase">
-    <div class="phase-number">Phase 4</div>
     <div class="phase-header">
       <div>
-        <h4>Secure Funding for Scale Production</h4>
+        <div class="phase-number">Phase 4</div>
+        <h4>Fund the Scale-Up</h4>
       </div>
       <div class="phase-meta">
-        <span class="phase-tag tag-time">1–3 Months (concurrent with Phase 3)</span>
-        <span class="phase-tag tag-cost">Varies</span>
+        <span class="phase-tag tag-time">2&ndash;4 Weeks</span>
+        <span class="phase-tag tag-cost">$0&ndash;$500</span>
       </div>
     </div>
-    <p><strong>Now we address your funding question directly.</strong> You asked whether you should raise from friends and family or go to investors. The answer depends on how much capital you need and what you can demonstrate.</p>
+    <p><strong>Objective:</strong> Determine how you will fund the transition from self-manufacturing to co-packer production. This is a planning phase, not a spending phase. Your Phase 3 sales data is your leverage.</p>
 
-    <h3>How Much Capital Do You Actually Need?</h3>
-    <p>To go from validated demand (Phase 3) to first co-packer production run and initial market launch, the typical specialty food startup needs $15,000–$50,000. Here is the breakdown:</p>
+    <h3>Funding Options for a Bootstrapped Food Startup</h3>
+    <ul>
+      <li><strong>Self-fund from Phase 3 revenue + personal savings.</strong> If you sold 200 bars and reinvest the revenue, you have $500&ndash;$700 toward co-packer costs. Combined with savings, this can cover a test run. This is the Siren Snacks path.</li>
+      <li><strong>Small business loan or line of credit.</strong> SBA microloans go up to $50K. Local CDFIs (Community Development Financial Institutions) in Austin like PeopleFund and LiftFund offer small business loans for food startups.</li>
+      <li><strong>Pre-sales / crowdfunding.</strong> A Kickstarter or Indiegogo campaign can validate demand and generate capital simultaneously. Food products perform well on these platforms if you have a compelling story and a clear niche (GLP-1 friendly is a strong angle).</li>
+      <li><strong>Angel investment.</strong> Only pursue this if you have a clear path to $1M+ in revenue. For a first-time founder without a track record, angel funding is unlikely before you have proven sales data and a co-packer relationship in place.</li>
+    </ul>
 
-    <div class="table-wrap"><table>
-      <thead>
-        <tr>
-          <th>Expense</th>
-          <th>Range</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Co-packer first run (10,000–25,000 bars)</td>
-          <td>$8,000–$25,000</td>
-          <td>Depends on MOQ, ingredients, complexity. Your premium ingredients (egg white protein, collagen, tahini) push toward the higher end.</td>
-        </tr>
-        <tr>
-          <td>Packaging design + printing</td>
-          <td>$2,000–$8,000</td>
-          <td>Professional packaging design ($1,500–$5,000), printed flow-wrap or packaging ($500–$3,000 for a first run). Many founders start simpler and upgrade.</td>
-        </tr>
-        <tr>
-          <td>Third-party lab testing</td>
-          <td>$500–$1,500</td>
-          <td>Nutritional analysis, shelf-life study, water activity testing. Required for FDA compliance and co-packer onboarding.</td>
-        </tr>
-        <tr>
-          <td>R&D / formulation with co-packer</td>
-          <td>$1,000–$3,000</td>
-          <td>Co-packers charge for recipe commercialization: adapting your home recipe for industrial equipment. Typically 2–5 trial batches.</td>
-        </tr>
-        <tr>
-          <td>Business formation + insurance</td>
-          <td>$500–$1,500</td>
-          <td>LLC formation, product liability insurance (required by co-packers and retailers), food safety permits.</td>
-        </tr>
-        <tr>
-          <td>Initial marketing + website</td>
-          <td>$1,000–$3,000</td>
-          <td>Shopify, brand identity, basic content creation. Organic social is free but having professional product photography is not.</td>
-        </tr>
-        <tr>
-          <td>Working capital / contingency</td>
-          <td>$2,000–$5,000</td>
-          <td>Shipping, samples, travel to co-packer, unexpected costs.</td>
-        </tr>
-        <tr>
-          <td><strong>Total Estimated Need</strong></td>
-          <td><strong>$15,000–$47,000</strong></td>
-          <td><strong>Lean launch: ~$15K–$20K. Full launch with professional branding: ~$35K–$50K.</strong></td>
-        </tr>
-      </tbody>
-    </table></div>
+    <h3>What You Need Before Approaching Any Funder</h3>
+    <ul>
+      <li>Phase 3 sales data (units sold, revenue, repeat purchase rate)</li>
+      <li>Customer feedback summary (satisfaction scores, testimonials)</li>
+      <li>Unit economics: COGS per bar, selling price, gross margin</li>
+      <li>A clear use-of-funds plan: how much you need and exactly what it covers (co-packer test run, first production run, packaging)</li>
+    </ul>
 
-    <h3>Your Funding Options, Ranked by Stage-Appropriateness</h3>
-
-    <p><strong>1. Personal savings + friends &amp; family (best for $5K–$25K).</strong> This is the standard first step. RXBAR was funded by $5,000 from each co-founder. Siren Snacks started with $40K (personal savings). The CPG startup community and funding data consistently show that most food brands start with personal capital or a friends-and-family round before having the traction to attract institutional investors. At your stage — pre-revenue, pre-co-packer — this is the most realistic path. If you can raise $10,000–$20,000 from a combination of personal savings and 2–4 people who believe in you, that is enough to fund through Phase 5 (first co-packer run). If you take money from friends or family, always formalize it — either as a simple loan with clear repayment terms, or as equity using a SAFE note (Simple Agreement for Future Equity). Never take informal handshake money.</p>
-
-    <p><strong>2. Crowdfunding (best for $10K–$50K, and doubles as market validation).</strong> Kickstarter or Indiegogo campaigns work well for mission-driven food products. A GLP-1 optimized protein bar with a compelling founder story is the kind of product that can generate community enthusiasm. A successful campaign not only funds your first production run, it also proves demand to future investors. This is worth considering seriously because your target market (GLP-1 users) is highly engaged online and actively seeking solutions.</p>
-
-    <p><strong>3. Food-focused accelerators (best for $25K–$250K + mentorship).</strong> Programs like Chobani Incubator, AccelFoods, SKU, Naturally Chicago, and Target's Takeoff provide seed capital ($25,000–$250,000), mentorship, co-packer introductions, and sometimes guaranteed retail placement. They are competitive to get into, but a GLP-1 focused bar targeting a 30-million-person medical population is exactly the kind of innovation-with-a-market these programs look for. Application cycles are typically quarterly.</p>
-
-    <p><strong>4. Angel investors / seed VCs (best for $250K–$2M, but requires traction).</strong> Typical food and beverage seed rounds range from $250K to $2M. Accelerators like AccelFoods start at $250K. Traditional seed-stage VCs write $500K–$1M checks. However — and this is critical — most CPG seed investors want to see initial sales data before writing a check. Pre-seed is possible with just a strong concept and LOIs (letters of intent from retailers), but seed-stage investors typically want to see revenue, even if modest. The pattern from the 2026 Startup CPG Founders &amp; Funders event was clear: investors are prioritizing capital-efficient, bootstrapped brands that demonstrate disciplined growth.</p>
-
-    <div class="blue-box">
-      <strong>My recommendation:</strong> Do not go to institutional investors yet. You have no revenue, no traction data, and no manufacturing track record. An investor pitch right now would be a concept pitch — and in the current funding environment, concept-stage food brands struggle to raise. Instead, raise $10,000–$20,000 from personal savings and/or 2–4 trusted friends or family members. Use that to fund Phases 2–5. Once you have 1,000+ bars sold, documented repeat purchase rates, and a co-packer relationship, you will have a dramatically more compelling story for investors or accelerators. Peter Rahal's father gave the best fundraising advice in CPG history: "Shut up and sell a thousand bars."
+    <div class="gold-box">
+      <strong>Total Phase 4 Budget: $0&ndash;$500.</strong> This phase is mostly planning and preparation. Costs are limited to any pitch materials, financial modeling tools, or loan application fees. The real capital need comes in Phase 5.
     </div>
+
+    <h3>Capital Requirements Summary</h3>
+    <div class="table-wrap">
+    <table>
+      <tr><th>Milestone</th><th>Estimated Cost</th><th>Funding Source</th></tr>
+      <tr><td>Co-packer R&amp;D / test run (500&ndash;1,000 bars)</td><td class="right">$3,000&ndash;$10,000</td><td>Revenue + savings or microloan</td></tr>
+      <tr><td>First production run (5,000&ndash;10,000 bars)</td><td class="right">$7,500&ndash;$25,000</td><td>Revenue + loan or pre-sales</td></tr>
+      <tr><td>Packaging (custom printed, MOQ)</td><td class="right">$1,500&ndash;$4,000</td><td>Included in production budget</td></tr>
+      <tr><td>Working capital (3 months)</td><td class="right">$2,000&ndash;$5,000</td><td>Savings or credit line</td></tr>
+    </table>
+    </div>
+
+    <div class="deliverable">&check; Deliverable: A funded plan with capital secured (or a clear path to it) for Phase 5 co-packer engagement.</div>
   </div>
 
+  <!-- PHASE 5 -->
   <div class="phase">
-    <div class="phase-number">Phase 5</div>
     <div class="phase-header">
       <div>
-        <h4>Co-Packer Selection &amp; Recipe Commercialization</h4>
+        <div class="phase-number">Phase 5</div>
+        <h4>Scale Production with a Co-Packer</h4>
       </div>
       <div class="phase-meta">
-        <span class="phase-tag tag-time">6–12 Weeks</span>
-        <span class="phase-tag tag-cost">$3,000–$8,000 (R&D + trial runs)</span>
+        <span class="phase-tag tag-time">8&ndash;16 Weeks</span>
+        <span class="phase-tag tag-cost">$3,000&ndash;$10,000</span>
       </div>
     </div>
-    <p><strong>What a co-packer actually does for you:</strong> A co-packer (contract manufacturer) takes your locked recipe and produces it at scale using industrial equipment — mixers, extruders, cutters, cooling tunnels, and flow-wrap packaging machines. They handle ingredient sourcing (often at better prices than you can get), FDA compliance, quality assurance, shelf-life testing, and food safety certifications (SQF, HACCP, GMP). You hand them a recipe and packaging specifications. They hand you pallets of finished, labeled, shelf-ready bars.</p>
+    <p><strong>Objective:</strong> Transition from self-manufacturing to a contract manufacturer (co-packer) who can produce your bar at scale, consistently, and at a lower per-unit cost. This is the phase where you stop making bars and start managing a supply chain.</p>
 
-    <p><strong>Key metrics to evaluate co-packers:</strong></p>
+    <h3>Co-Packer Options Near Austin/Dallas</h3>
     <ul>
-      <li><strong>Minimum Order Quantity (MOQ):</strong> This is the critical number. YouBar (Los Angeles, one of the largest bar-focused co-packers in the U.S.) starts at 10,000 bars. Element Bars (Chicago) starts at 25,000 bars. Smaller co-packers may go lower. For your first run, target a co-packer with a 5,000–10,000 bar MOQ.</li>
-      <li><strong>Certifications:</strong> At minimum, look for SQF or HACCP certification and FDA registration. If you want to make kosher, organic, or Non-GMO Project Verified claims, the co-packer needs to hold those certifications.</li>
-      <li><strong>Ingredient compatibility:</strong> Your recipe uses egg whites, tree nuts (almond), and sesame — three of the nine major allergens. The co-packer must be equipped to handle these allergens and willing to do so. Some facilities are nut-free or allergen-restricted and will not take your product.</li>
-      <li><strong>R&amp;D and formulation support:</strong> The best co-packers have in-house food scientists who will help adapt your kitchen recipe for industrial production. This includes adjusting water activity for shelf stability, recommending natural preservatives if needed (citric acid, mixed tocopherols), and optimizing texture through equipment calibration. This is how your "texture is slightly off" problem gets solved — it is the co-packer's job.</li>
-      <li><strong>Geography:</strong> Ideally, your co-packer is within driving distance so you can attend trial runs. Shipping finished product from across the country adds cost.</li>
+      <li><strong>YouBar (Farmers Branch, TX &mdash; Dallas area):</strong> Full-service co-packer specializing in protein and nutrition bars. Test runs start at 500 bars minimum. Standard production runs require 5,000+ bars. They handle R&amp;D, production, packaging, and FDA compliance support. SQF certified, USDA Organic capable, Non-GMO Project verified. This is the closest full-service bar co-packer to Austin (~3 hours).</li>
+      <li><strong>Element Bars (Chicago, IL):</strong> Large-scale co-packer with 1,000,000+ bars/month capacity. Test runs start at 1,000 bars. GMP certified with HACCP food safety plan. More suited for later-stage scaling but worth establishing a relationship early.</li>
+      <li><strong>PartnerSlate / co-packer marketplace:</strong> Platform for finding and comparing co-packers. Useful for getting multiple quotes and finding regional options you may not discover through direct search.</li>
     </ul>
 
-    <p><strong>The onboarding process with a co-packer typically takes 6–12 weeks and follows this sequence:</strong></p>
+    <h3>What to Expect from the Co-Packer Process</h3>
     <ul>
-      <li><strong>Week 1–2:</strong> Initial consultation. You send your recipe, target nutrition profile, and product vision. The co-packer evaluates feasibility on their equipment.</li>
-      <li><strong>Week 3–5:</strong> Bench-top formulation. The co-packer's R&D team adapts your recipe. You may go through 2–5 rounds of sample tasting. Each round costs $500–$1,500 depending on the co-packer.</li>
-      <li><strong>Week 6–8:</strong> Pilot production run. A small-batch test on actual production equipment (not a lab). This reveals how the recipe performs at scale — extrusion behavior, cooling behavior, texture consistency. Expect $1,000–$3,000 for a pilot run.</li>
-      <li><strong>Week 8–10:</strong> Shelf-life testing begins. Water activity analysis, microbiological testing, and accelerated shelf-life studies. Results typically take 2–6 weeks depending on the protocol.</li>
-      <li><strong>Week 10–12:</strong> Final production-ready formula locked. Nutritional analysis confirmed. Packaging procurement finalized.</li>
+      <li><strong>R&amp;D / formulation rounds:</strong> $500&ndash;$1,500 per round. Expect 2&ndash;3 rounds to translate your home recipe into a commercial formula. Co-packers adjust for equipment differences, ingredient specifications, and shelf stability.</li>
+      <li><strong>Test production run (500&ndash;1,000 bars):</strong> $1,500&ndash;$3,000. This is your validation run to confirm taste, texture, and packaging before committing to a full production order.</li>
+      <li><strong>Compliance and certifications:</strong> $500&ndash;$1,500 for lab testing, shelf-life studies, and any certifications you want on the label (allergen testing, etc.).</li>
+      <li><strong>First full production run (5,000&ndash;10,000 bars):</strong> At co-packer scale, COGS per bar drops to approximately $1.50&ndash;$2.50 (including ingredients, production, and packaging at wholesale). A 5,000-bar run would cost roughly $7,500&ndash;$12,500; a 10,000-bar run roughly $15,000&ndash;$25,000.</li>
     </ul>
 
-    <p><strong>Where to find co-packers:</strong> PartnerSlate is the most widely used co-packer matching platform in the U.S. — it allows you to submit your project specs and get matched with manufacturers. Also search SpecialtyFoodCopackers.com, and look at Cornell University's co-packer directory. Google "[your state] protein bar co-packer" will surface regional options. Attending Expo West or Fancy Food Show can also yield connections, but those require travel and tickets.</p>
+    <h3>Cost Breakdown (Through Test Production)</h3>
+    <ul>
+      <li>R&amp;D / formulation (2&ndash;3 rounds): $1,000&ndash;$4,500</li>
+      <li>Test production run (500&ndash;1,000 bars): $1,500&ndash;$3,000</li>
+      <li>Compliance / lab testing: $500&ndash;$1,500</li>
+      <li>Shipping / logistics: $200&ndash;$500</li>
+    </ul>
 
-    <div class="deliverable">✓ Deliverable: Signed co-packer agreement, production-ready formula, shelf-life test results, confirmed per-unit COGS (cost of goods sold).</div>
-  </div>
-
-  <div class="phase">
-    <div class="phase-number">Phase 6</div>
-    <div class="phase-header">
-      <div>
-        <h4>First Production Run &amp; Market Launch</h4>
-      </div>
-      <div class="phase-meta">
-        <span class="phase-tag tag-time">2–4 Weeks (production) + Ongoing</span>
-        <span class="phase-tag tag-cost">$8,000–$25,000</span>
-      </div>
+    <div class="gold-box">
+      <strong>Total Phase 5 Budget: $3,000&ndash;$10,000</strong> (through test production). This does not include your first full production run, which is a separate capital commitment of $7,500&ndash;$25,000 depending on volume. Phase 5 is about validating the co-packer relationship and confirming the commercial product matches your original recipe.
     </div>
-    <p><strong>Your first co-packer production run</strong> will produce 10,000–25,000 bars depending on the MOQ. At an estimated COGS of $1.50–$2.50 per bar (premium ingredients like egg white protein, collagen, and tahini drive this higher than average), 10,000 bars will cost approximately $15,000–$25,000 all-in (ingredients + production + packaging).</p>
-    <p><strong>What you receive:</strong> Finished, wrapped, labeled bars in cases (typically 12 bars per case). They will arrive on pallets to a fulfillment center, your home, or a 3PL (third-party logistics) provider like ShipBob or Atomix (which David Protein uses for DTC fulfillment).</p>
-    <p><strong>Launch sequencing (modeled on David Protein's approach, which Rahal explicitly recommended):</strong></p>
-    <ul>
-      <li><strong>Week 1–4:</strong> DTC launch via Shopify. Sell direct to customers at full margin. Ship from your location or a 3PL. Simultaneously, send product samples to GLP-1 influencers, endocrinologists, and health-focused content creators. This is your TikTok/Instagram moment.</li>
-      <li><strong>Month 2–3:</strong> Amazon launch. List on Amazon Marketplace. This gives you discoverability and social proof (reviews). Many customers will research on Amazon before buying DTC.</li>
-      <li><strong>Month 3–6:</strong> Begin retail outreach. Start local and regional: independent health food stores, natural grocers, specialty stores. Once you have velocity data (how fast bars sell per store per week), you can approach larger retailers. Velocity data is the single most important metric retail buyers evaluate.</li>
-    </ul>
-    <div class="deliverable">✓ Deliverable: 10,000+ bars in inventory, DTC website live and processing orders, Amazon listing active, initial retail placements secured.</div>
+
+    <div class="warn-box">
+      <strong>Critical:</strong> Do not sign a co-packer contract until you have (a) completed a successful test run, (b) tasted and approved the output, and (c) confirmed the per-unit cost matches your financial model. Co-packer switching costs are high &mdash; R&amp;D fees are non-refundable and formulations are not always transferable.
+    </div>
+
+    <div class="deliverable">&check; Deliverable: A co-packer relationship with a validated commercial recipe, successful test production, and a confirmed per-unit cost for scaling.</div>
   </div>
 </div>
 
-<!-- ========================================
-     SECTION 3: FULL TIMELINE SUMMARY
-     ======================================== -->
+<!-- SECTION 3: TIMELINE SUMMARY -->
 <div class="section">
   <div class="section-label">Section 03</div>
-  <h2>Full Timeline Summary</h2>
+  <h2>Timeline &amp; Budget Summary</h2>
 
-  <p>From where you are today — a home prototype that tastes good and has positive informal feedback — to a co-packer-produced bar selling online, the realistic total timeline is <strong>5–8 months</strong>. Here is the compressed view:</p>
+  <p>This table summarizes the full journey from kitchen to co-packer. Total timeline is approximately 20&ndash;37 weeks (5&ndash;9 months). Total pre-scale budget is $5,750&ndash;$18,450, with the first full co-packer production run requiring an additional $7,500&ndash;$25,000.</p>
 
-  <div class="table-wrap"><table>
-    <thead>
-      <tr>
-        <th>Phase</th>
-        <th>Duration</th>
-        <th>Cost Range</th>
-        <th>Key Milestone</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1. Lock Recipe</td>
-        <td>2–4 weeks</td>
-        <td>$100–$300</td>
-        <td>Final recipe locked with 10+ tester feedback</td>
-      </tr>
-      <tr>
-        <td>2. Commercial Kitchen</td>
-        <td>2–6 weeks</td>
-        <td>$1,000–$3,500</td>
-        <td>First sellable batch produced, labels compliant</td>
-      </tr>
-      <tr>
-        <td>3. Prove Demand</td>
-        <td>1–3 months</td>
-        <td>$500–$2,000</td>
-        <td>500+ bars sold to strangers, repeat purchase data</td>
-      </tr>
-      <tr>
-        <td>4. Secure Funding</td>
-        <td>1–3 months*</td>
-        <td>Varies</td>
-        <td>$10K–$20K raised from F&F or personal savings</td>
-      </tr>
-      <tr>
-        <td>5. Co-Packer Onboarding</td>
-        <td>6–12 weeks</td>
-        <td>$3,000–$8,000</td>
-        <td>Production-ready formula, shelf-life confirmed</td>
-      </tr>
-      <tr>
-        <td>6. First Production Run</td>
-        <td>2–4 weeks</td>
-        <td>$8,000–$25,000</td>
-        <td>10,000+ bars, DTC launch, Amazon live</td>
-      </tr>
-      <tr>
-        <td><strong>Total to Market</strong></td>
-        <td><strong>5–8 months</strong></td>
-        <td><strong>$15,000–$40,000</strong></td>
-        <td><strong>Commercially produced bar selling online</strong></td>
-      </tr>
-    </tbody>
-  </table></div>
-  <p class="source">*Phase 4 runs concurrently with Phase 3, not sequentially.</p>
-
-  <div class="gold-box">
-    <strong>An important note on timeline compression:</strong> RXBAR went from kitchen to first sales in weeks because they were willing to sell hand-made bars with PowerPoint labels. They did not wait for perfect packaging, perfect branding, or a co-packer. If you are willing to sell from a commercial kitchen with simple labels while simultaneously onboarding a co-packer, you can compress Phases 2–5 into a parallel workflow and be selling within 4–6 weeks of today. Perfection is the enemy of revenue. Revenue is the enemy of starvation.
+  <div class="table-wrap">
+  <table>
+    <tr>
+      <th>Phase</th>
+      <th>Milestone</th>
+      <th>Timeline</th>
+      <th>Budget</th>
+      <th>Key Deliverable</th>
+    </tr>
+    <tr>
+      <td><strong>1</strong></td>
+      <td>Lock the Recipe</td>
+      <td>2&ndash;3 weeks</td>
+      <td class="right">$250&ndash;$450</td>
+      <td>Finalized recipe with feedback from 15&ndash;25 testers</td>
+    </tr>
+    <tr>
+      <td><strong>2</strong></td>
+      <td>Go Commercial</td>
+      <td>4&ndash;8 weeks</td>
+      <td class="right">$2,000&ndash;$5,500</td>
+      <td>200+ bars produced in licensed kitchen with nutrition label</td>
+    </tr>
+    <tr>
+      <td><strong>3</strong></td>
+      <td>Build the Brand &amp; Sell Direct</td>
+      <td>4&ndash;6 weeks</td>
+      <td class="right">$500&ndash;$2,000</td>
+      <td>Live sales channel, 200+ bars sold, customer feedback</td>
+    </tr>
+    <tr>
+      <td><strong>4</strong></td>
+      <td>Fund the Scale-Up</td>
+      <td>2&ndash;4 weeks</td>
+      <td class="right">$0&ndash;$500</td>
+      <td>Funded plan with capital secured for co-packer</td>
+    </tr>
+    <tr>
+      <td><strong>5</strong></td>
+      <td>Scale Production</td>
+      <td>8&ndash;16 weeks</td>
+      <td class="right">$3,000&ndash;$10,000</td>
+      <td>Co-packer validated, test production complete</td>
+    </tr>
+    <tr style="background: var(--green-light);">
+      <td></td>
+      <td><strong>Total (Pre-Scale)</strong></td>
+      <td><strong>20&ndash;37 weeks</strong></td>
+      <td class="right"><strong>$5,750&ndash;$18,450</strong></td>
+      <td>Ready for first full production run</td>
+    </tr>
+    <tr style="background: var(--gold-light);">
+      <td></td>
+      <td><strong>First Production Run</strong></td>
+      <td>+4&ndash;6 weeks</td>
+      <td class="right"><strong>$7,500&ndash;$25,000</strong></td>
+      <td>5,000&ndash;10,000 bars at co-packer scale</td>
+    </tr>
+  </table>
   </div>
-</div>
-
-<!-- ========================================
-     SECTION 4: LESSONS FROM FAILURES
-     ======================================== -->
-<div class="section">
-  <div class="section-label">Section 04</div>
-  <h2>Where Other Companies Failed — And How to Avoid It</h2>
-
-  <p>The following failure patterns are documented across CPG startup post-mortems, food industry analyses, and startup community data. Each one is accompanied by a specific recommendation for your bar.</p>
-
-  <h3>1. Scaling production before proving demand</h3>
-  <p>The most common killer. Founders fall in love with their product, sign a 50,000-bar co-packer contract, and end up with pallets of inventory they cannot sell. RXBAR explicitly avoided this by not raising capital and instead forcing themselves to sell every bar they made before making more. "These constraints helped us stay honest with ourselves," Rahal said. <strong>Your safeguard:</strong> Do not sign a co-packer contract until you have sold 500+ bars from a commercial kitchen and have documented demand. Phase 3 before Phase 5, always.</p>
-
-  <h3>2. Obsessing over macros while ignoring taste</h3>
-  <p>Food startup analysts have documented this repeatedly: protein bar companies optimize for nutritional numbers and produce bars that taste like cardboard. Consumers will choose a 12g protein bar that tastes great over a 20g protein bar that does not. Your formulation is strong here — the chocolate-tahini-seed flavor profile is inherently delicious. Do not let the "GLP-1 optimized" positioning cause you to sacrifice flavor. <strong>Your safeguard:</strong> Every recipe decision should pass the taste-first test. If an ingredient addition improves the nutrition panel but makes the bar worse-tasting, reject it.</p>
-
-  <h3>3. Packaging that does not survive distribution</h3>
-  <p>A common and expensive mistake. Founders design beautiful packaging in their test kitchen that fails in transit — labels peel off during refrigeration, wrappers tear during shipping, or bars shift and crumble inside packaging that was not designed for the real supply chain. <strong>Your safeguard:</strong> Start simple. RXBAR started with PowerPoint labels. You should start with basic adhesive labels on generic flow-wrap or parchment. Upgrade packaging only after you have revenue justifying the investment. When you do invest in custom packaging, send test units through the actual shipping pipeline before ordering a full run.</p>
-
-  <h3>4. Chasing retail distribution before having velocity</h3>
-  <p>Getting into stores is not the hard part — staying in stores is. Retail buyers evaluate your product based on velocity: how many units sell per store per week. If your bars sit on a shelf and do not move, the retailer pulls them. You wasted the slotting fee, the inventory, and the relationship. <strong>Your safeguard:</strong> Do not approach Whole Foods or Target until you have a proven DTC and local retail velocity track record. Use local independent stores as your testing ground. If bars are selling 2–3 units per store per week at an independent grocer, you have data that interests a regional buyer.</p>
-
-  <h3>5. Underestimating COGS at scale</h3>
-  <p>Your bar uses premium ingredients — egg white protein, collagen peptides, tahini, almond butter, pumpkin seeds, hemp seeds, organic green tea extract. Each of these costs more than the commodity ingredients (whey concentrate, soy lecithin, sugar alcohols) used by mass-market competitors. At home-recipe scale, you are buying retail. At co-packer scale, you will buy wholesale, but your per-bar COGS will still likely be $1.50–$2.50. At a retail price of $3.49–$4.49 and a typical retail margin of 35–40%, your margin will be tight. <strong>Your safeguard:</strong> Run a full unit economics model before signing a co-packer. Know exactly what your landed cost per bar is (ingredients + production + packaging + shipping) and work backward from your target retail price to confirm you have a viable margin. We should build this model together before Phase 5.</p>
-
-  <h3>6. Not controlling shelf life from day one</h3>
-  <p>Protein bars with dates, nut butters, and seeds are moisture-sensitive. If water activity is not controlled during production, bars can develop mold, become rancid, or lose texture within weeks rather than the 6–12 months retail requires. RXBAR even had a significant recall in 2019 for undeclared peanut contamination — a reminder that even post-acquisition, food safety issues can derail a brand. <strong>Your safeguard:</strong> Water activity testing (Aw) should begin during co-packer onboarding. Your bar needs an Aw below 0.70 to prevent microbial growth without refrigeration. The co-packer will manage this, but you need to understand and monitor it.</p>
 
   <div class="green-box">
-    <strong>The single most important lesson from every successful protein bar company:</strong> Be in the market as fast as possible. Learn from real customers, not from spreadsheets. Rahal sold bars door-to-door. Giannuzzi sold protein bites from her dorm room. Every day your product is not in someone's hands is a day of data you are not collecting. The market will tell you what to fix faster than any amount of planning.
+    <strong>For context:</strong> Siren Snacks launched with approximately $40,000 in total startup capital, which covered everything from recipe development through commercial kitchen production, branding, early marketing, and initial co-packer runs. Your pre-scale budget of $5,750&ndash;$18,450 puts you well within range of a lean bootstrap launch. The RXBAR founders did it for $10,000 &mdash; but that was 2013 dollars without equipment costs, and they had family food industry connections.
   </div>
 </div>
 
-<!-- ========================================
-     SECTION 5: RECOMMENDED IMMEDIATE NEXT STEPS
-     ======================================== -->
+<!-- SECTION 4: NEXT STEPS -->
 <div class="section">
-  <div class="section-label">Section 05</div>
+  <div class="section-label">Section 04</div>
   <h2>Your Immediate Next Steps</h2>
 
-  <p>Based on everything above, here is what I recommend you do in the next 30 days, in order:</p>
+  <p>You are in Phase 1. Here is exactly what to do this week:</p>
 
-  <div class="phase">
-    <div class="phase-number">Week 1–2</div>
-    <h4>Lock the Recipe</h4>
+  <div class="phase" style="border-left: 4px solid var(--green); padding-left: 20px;">
+    <h3>This Week</h3>
     <ul>
-      <li>Produce Batches 2 and 3 per the product blueprint's iteration roadmap.</li>
-      <li>Get the bars into the hands of at least 3 people who are currently on GLP-1 medications. Ask them specifically about: taste appeal given reduced appetite, portion size (is 60g too much or about right?), and whether they would buy it at $3.99.</li>
-      <li>Lock the recipe after Batch 3 unless feedback is clearly negative.</li>
+      <li><strong>Order equipment</strong> if you have not already: food processor, digital food scale, silicone bar molds, and parchment paper.</li>
+      <li><strong>Source ingredients.</strong> Buy retail quantities of egg white protein powder, collagen peptides, Medjool dates, tahini, almond butter, raw cacao powder, and pumpkin seeds. Refer to the Home Recipe page for exact quantities per batch.</li>
+      <li><strong>Make Batch 1</strong> &mdash; the baseline recipe exactly as documented. Weigh every ingredient. Note mixing times. Photograph the result.</li>
+      <li><strong>Set up a simple feedback form</strong> (Google Forms is free) with 5&ndash;7 questions for taste testers.</li>
+    </ul>
+
+    <h3>This Month</h3>
+    <ul>
+      <li>Complete all 5 batches with systematic variable testing.</li>
+      <li>Collect feedback from at least 15 people outside your immediate circle.</li>
+      <li>Begin the Texas Food Handler Certification online ($7&ndash;$15, takes a few hours).</li>
+      <li>Research and contact Capital Kitchens Austin and PREP ATX for pricing and availability.</li>
+      <li>Start the City of Austin Food Enterprise Permit application process.</li>
     </ul>
   </div>
 
-  <div class="phase">
-    <div class="phase-number">Week 2–3</div>
-    <h4>Set Up the Business Foundation</h4>
-    <ul>
-      <li>Form an LLC (can be done online in 1–2 days for $50–$500 depending on your state).</li>
-      <li>Get a Food Handler's Permit.</li>
-      <li>Research and book a shared commercial kitchen in your area.</li>
-      <li>Begin a friends-and-family funding conversation if you cannot self-fund $10K–$15K. Keep it simple: you need $X to produce your first 500 bars and prove market demand. Show them the product blueprint. Show them the GLP-1 market data (12M+ current users, 30M by 2030). Have a clear ask and clear terms.</li>
-    </ul>
+  <div class="blue-box">
+    <strong>Remember the RXBAR principle:</strong> &ldquo;Shut the fuck up and sell a thousand bars.&rdquo; Everything on this roadmap exists to get you to that first thousand. Do not spend time on things that do not directly advance that goal. No fancy website. No Instagram strategy. No investor decks. Make the bar. Sell the bar. Prove it works.
   </div>
-
-  <div class="phase">
-    <div class="phase-number">Week 3–4</div>
-    <h4>Produce &amp; Start Selling</h4>
-    <ul>
-      <li>Produce your first batch of 100–200 bars in the commercial kitchen.</li>
-      <li>Commission a third-party nutritional analysis (~$500). This is required for your FDA-compliant label.</li>
-      <li>Set up a Shopify store (even a basic one-page version is fine).</li>
-      <li>Start selling: DTC online, local health stores on consignment, farmers markets, GLP-1 communities.</li>
-      <li>Begin researching co-packers on PartnerSlate so you are ready to move to Phase 5 once you hit your demand targets.</li>
-    </ul>
-  </div>
-
-  <p>The goal for the next 30 days is to go from "we have a recipe" to "we are selling bars and collecting data." Everything else — branding, packaging design, co-packer relationships, investor conversations — becomes exponentially easier once you have real sales data and real customer feedback.</p>
 </div>
 
-</div><!-- end .container -->
+</div><!-- end container -->
 
 <div class="footer">
-  Dark Chocolate Tahini Bar — Manufacturing Roadmap v1.0<br>
-  Research compiled February 2026. All cost and timeline ranges based on documented industry data.<br>
-  Sources: Inc. Magazine, Food Business News, CNBC, Entrepreneur, Food Dive, AgFunderNews, BusinessWire,<br>
-  YouBar, PartnerSlate, Element Bars, Starter Story, Crestmont Capital, Startup CPG, BeverageDaily, IFT.
+  <strong>Manufacturing Roadmap v1.1</strong> &mdash; Protein Bar Blueprint<br>
+  Costs verified against 2025 Austin, TX pricing. Commercial kitchen rates from Capital Kitchens Austin. Permit fees per Austin Public Health (effective Oct 2025). Insurance estimates from multiple provider quotes. Co-packer pricing from YouBar, Element Bars, and industry benchmarks.<br>
+  Last updated: February 2026
 </div>
 
 </body>
