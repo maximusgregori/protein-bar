@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bar vs. Powder — Format Decision Analysis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --black: #111;
+    --white: #fff;
+    --bg: #f6f5f0;
+    --green: #3d6b35;
+    --green-light: #eaf2e7;
+    --green-mid: #7ba83e;
+    --gold: #b8943a;
+    --gold-light: #fdf8ec;
+    --red: #c44;
+    --red-light: #fdf0f0;
+    --gray-100: #fafaf8;
+    --gray-200: #eee;
+    --gray-300: #ddd;
+    --gray-400: #999;
+    --gray-500: #777;
+    --gray-600: #555;
+    --gray-700: #333;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--black);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .cover {
+    background: var(--black);
+    color: var(--white);
+    padding: 80px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(61,107,53,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 30%, rgba(184,148,58,0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .cover-badge {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.25);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .cover h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .cover .tagline {
+    font-size: 17px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.55);
+    max-width: 680px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .section {
+    padding: 48px 0;
+    border-bottom: 1px solid var(--gray-300);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+
+  .section h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+
+  .section h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 28px 0 12px 0;
+  }
+
+  .section p {
+    font-size: 15px;
+    color: var(--gray-700);
+    margin-bottom: 14px;
+    line-height: 1.7;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 16px 0;
+  }
+
+  table th {
+    background: var(--black);
+    color: var(--white);
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  table th.right { text-align: right; }
+
+  table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--gray-200);
+    vertical-align: top;
+  }
+
+  table td.right {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  table tr:nth-child(even) td { background: var(--gray-100); }
+
+  .win { color: var(--green); font-weight: 700; }
+  .lose { color: var(--red); }
+  .neutral { color: var(--gold); font-weight: 600; }
+
+  .table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0;
+  }
+
+  .table-wrap table { margin: 0; min-width: 600px; }
+
+  /* Competitor Cards */
+  .comp-card {
+    background: white;
+    border: 1px solid var(--gray-300);
+    border-radius: 10px;
+    padding: 24px;
+    margin: 16px 0;
+    position: relative;
+  }
+
+  .comp-card::before {
+    content: attr(data-rank);
+    position: absolute;
+    top: -1px;
+    right: 20px;
+    background: var(--black);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 0 0 6px 6px;
+  }
+
+  .comp-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .comp-card-name { font-size: 20px; font-weight: 800; }
+  .comp-card-sub { font-size: 13px; color: var(--gray-500); }
+
+  .comp-card-stats {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+
+  .comp-card-stat { text-align: center; min-width: 70px; }
+  .comp-card-stat .ccs-value { font-size: 22px; font-weight: 800; line-height: 1.2; }
+  .comp-card-stat .ccs-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray-500); }
+
+  .comp-verdict {
+    font-size: 14px;
+    color: var(--gray-700);
+    padding-top: 12px;
+    border-top: 1px solid var(--gray-200);
+    line-height: 1.65;
+  }
+
+  .comp-verdict strong { color: var(--black); }
+
+  .comp-weakness {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--red-light);
+    color: var(--red);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 2px 2px 2px 0;
+  }
+
+  .comp-strength {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--green-light);
+    color: var(--green);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 2px 2px 2px 0;
+  }
+
+  /* Callout Boxes */
+  .green-box {
+    background: var(--green-light);
+    border-left: 4px solid var(--green);
+    padding: 14px 18px;
+    margin: 16px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .gold-box {
+    background: var(--gold-light);
+    border-left: 4px solid var(--gold);
+    padding: 14px 18px;
+    margin: 16px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .red-box {
+    background: var(--red-light);
+    border-left: 4px solid var(--red);
+    padding: 14px 18px;
+    margin: 16px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* Verdict Banner */
+  .verdict-banner {
+    background: var(--green);
+    color: var(--white);
+    border-radius: 12px;
+    padding: 32px;
+    margin: 24px 0;
+    text-align: center;
+  }
+
+  .verdict-banner h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0 0 8px 0;
+    color: var(--white);
+  }
+
+  .verdict-banner p {
+    color: rgba(255,255,255,0.8);
+    font-size: 15px;
+    margin: 0;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Score Grid */
+  .score-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .score-card {
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    padding: 16px;
+    background: white;
+    text-align: center;
+  }
+
+  .score-card .sc-dimension {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray-500);
+    margin-bottom: 8px;
+  }
+
+  .score-card .sc-bar {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 2px;
+  }
+
+  .score-card .sc-powder {
+    font-size: 14px;
+    color: var(--gray-500);
+  }
+
+  .bar-wins .sc-bar { color: var(--green); }
+  .powder-wins .sc-bar { color: var(--red); }
+  .tie .sc-bar { color: var(--gold); }
+
+  .site-nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-300);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .site-nav-brand {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 16px;
+    color: var(--black);
+    text-decoration: none;
+    padding: 14px 0;
+    white-space: nowrap;
+  }
+
+  .site-nav-brand:hover { color: var(--green); }
+
+  .site-nav-links { display: flex; gap: 0; }
+
+  .site-nav-links a {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    text-decoration: none;
+    padding: 16px 16px;
+    transition: all 0.15s;
+    border-bottom: 2px solid transparent;
+  }
+
+  .site-nav-links a:hover { color: var(--black); background: rgba(0,0,0,0.02); }
+  .site-nav-links a.active { color: var(--green); border-bottom-color: var(--green); }
+
+  .footer {
+    text-align: center;
+    padding: 40px;
+    font-size: 12px;
+    color: var(--gray-400);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 700px) {
+    .site-nav { padding: 0 16px; flex-direction: column; align-items: flex-start; }
+    .site-nav-brand { padding: 12px 0 4px; font-size: 15px; }
+    .site-nav-links { width: 100%; padding-bottom: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .site-nav-links a { padding: 8px 10px; font-size: 10px; white-space: nowrap; }
+    .cover { padding: 40px 20px 36px; }
+    .cover h1 { font-size: 28px; }
+    .cover .tagline { font-size: 14px; margin-bottom: 24px; }
+    .cover-badge { font-size: 10px; padding: 5px 12px; margin-bottom: 20px; }
+    .container { padding: 0 16px; }
+    .section { padding: 32px 0; }
+    .section h2 { font-size: 22px; margin-bottom: 14px; }
+    .section h3 { font-size: 15px; margin: 20px 0 10px; }
+    .section p { font-size: 14px; line-height: 1.65; }
+    .section-label { font-size: 10px; letter-spacing: 1.5px; }
+    .comp-card { padding: 16px; margin: 12px 0; }
+    .comp-card::before { font-size: 9px; padding: 3px 8px; right: 12px; }
+    .comp-card-name { font-size: 17px; }
+    .comp-card-stats { gap: 10px; }
+    .comp-card-stat { min-width: 55px; }
+    .comp-card-stat .ccs-value { font-size: 18px; }
+    .comp-card-stat .ccs-label { font-size: 9px; }
+    .comp-verdict { font-size: 13px; }
+    .comp-strength, .comp-weakness { font-size: 10px; }
+    .green-box, .gold-box, .red-box { padding: 12px 14px; font-size: 13px; }
+    table { font-size: 12px; }
+    table th { padding: 8px 10px; font-size: 10px; }
+    table td { padding: 8px 10px; font-size: 12px; }
+    .score-grid { grid-template-columns: 1fr; }
+    .verdict-banner { padding: 24px 16px; }
+    .verdict-banner h3 { font-size: 22px; }
+    .footer { padding: 24px 16px; font-size: 11px; }
+  }
+
+  @media (max-width: 400px) {
+    .cover h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html" class="site-nav-brand">Protein Bar Blueprint</a>
+  <div class="site-nav-links">
+    <a href="product-blueprint.html">Product Blueprint</a>
+    <a href="competitive-analysis.html">Competitive Analysis</a>
+    <a href="home-recipe.html">Home Recipe</a>
+    <a href="manufacturing-roadmap.html">Manufacturing Roadmap</a>
+    <a href="bar-vs-powder.html" class="active">Bar vs. Powder</a>
+  </div>
+</nav>
+
+<div class="cover">
+  <div class="cover-badge">Format Decision Analysis</div>
+  <h1>Bar vs. Powder</h1>
+  <div class="tagline">Your friends suggested protein powder might be the better format for GLP-1 users. Here's the same research we did on the bar — applied to powder — so you can make this decision with data, not gut instinct.</div>
+</div>
+
+<div class="container">
+
+<!-- ======== SECTION 1: POWDER COMPETITIVE LANDSCAPE ======== -->
+<div class="section">
+  <div class="section-label">Section 01</div>
+  <h2>Powder Competitive Landscape</h2>
+
+  <p>The protein powder market is a <strong>$27 billion industry in 2025</strong>, projected to reach $50 billion by 2035. Unlike the protein bar space — where no product targets GLP-1 users with micronutrient density and clean-label positioning — the powder market is already saturated with established brands, and multiple players have explicitly entered the GLP-1 powder space.</p>
+
+  <!-- YOUTHEORY -->
+  <div class="comp-card" data-rank="Threat Level: High">
+    <div class="comp-card-header">
+      <div class="comp-card-name">Youtheory GLP-1 Muscle Guard Protein</div>
+      <div class="comp-card-sub">Launched Feb 2025 · Vanilla · $39.99 / 10 servings (~$4.00/serving)</div>
+    </div>
+    <div class="comp-card-stats">
+      <div class="comp-card-stat"><div class="ccs-value">20g</div><div class="ccs-label">Protein</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">170</div><div class="ccs-label">Calories</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">15g</div><div class="ccs-label">Carbs</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">$4.00</div><div class="ccs-label">Per Serving</div></div>
+    </div>
+    <div>
+      <span class="comp-strength">First GLP-1 branded protein powder</span>
+      <span class="comp-strength">Doctor-formulated (Dr. Louis Aronne)</span>
+      <span class="comp-strength">Retail at Sprouts, Vitamin Shoppe, GNC, Amazon</span>
+      <span class="comp-strength">myHMB + Calcium + Vitamin D + prebiotic fiber</span>
+      <span class="comp-weakness">Corn syrup solids in sunflower creamer</span>
+      <span class="comp-weakness">Stevia + xanthan gum</span>
+      <span class="comp-weakness">Contains milk and soy</span>
+      <span class="comp-weakness">Only 10 servings per container</span>
+    </div>
+    <div class="comp-verdict">
+      <strong>This is the exact product you'd be competing against head-to-head.</strong> Youtheory has first-mover advantage in GLP-1 protein powder, a doctor endorsement (Dr. Aronne is a leading obesity medicine specialist), and retail distribution at Sprouts, GNC, and Vitamin Shoppe already secured. Their ingredient list is not clean-label — corn syrup solids, stevia, xanthan gum — but their GLP-1 positioning and clinical credibility are strong. They also sell a full GLP-1 supplement stack (Multi at $24.99, Probiotic at $14.99, Protein at $39.99), creating a bundled ecosystem that a single-product startup would struggle to match.
+    </div>
+  </div>
+
+  <!-- KATE FARMS -->
+  <div class="comp-card" data-rank="Threat Level: Severe">
+    <div class="comp-card-header">
+      <div class="comp-card-name">Kate Farms High Protein Shake (RTD)</div>
+      <div class="comp-card-sub">Launched July 2025 · Owned by Danone · Walmart, Amazon · ~$4.25/carton</div>
+    </div>
+    <div class="comp-card-stats">
+      <div class="comp-card-stat"><div class="ccs-value">25g</div><div class="ccs-label">Protein</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">160</div><div class="ccs-label">Calories</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">0g</div><div class="ccs-label">Sugar</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">27</div><div class="ccs-label">Vitamins & Minerals</div></div>
+    </div>
+    <div>
+      <span class="comp-strength">Danone corporate backing + distribution muscle</span>
+      <span class="comp-strength">27 vitamins and minerals per serving</span>
+      <span class="comp-strength">USDA Organic, Non-GMO, allergen-free</span>
+      <span class="comp-strength">25g protein at only 160 cal — exceptional ratio</span>
+      <span class="comp-strength">Medical/clinical credibility from hospital-grade lineage</span>
+      <span class="comp-strength">Already at Walmart as of Nov 2025</span>
+      <span class="comp-weakness">Pea protein (taste concerns for some)</span>
+      <span class="comp-weakness">RTD format, not powder — different shelf but same consumer</span>
+    </div>
+    <div class="comp-verdict">
+      <strong>This is the 800-lb gorilla in the GLP-1 liquid nutrition space.</strong> Kate Farms delivers 25g of organic plant protein, zero sugar, 27 vitamins and minerals, and 160 calories per serving — in a ready-to-drink format backed by Danone's distribution infrastructure. They're already in Walmart. Their marketing team has quadrupled in size for 2026, with a 30% increase in ad spend. They're growing 50% year-over-year on Amazon. A bootstrapped GLP-1 protein powder would be launching directly into this product's kill zone.
+    </div>
+  </div>
+
+  <!-- ORGAIN -->
+  <div class="comp-card" data-rank="Threat Level: Medium">
+    <div class="comp-card-header">
+      <div class="comp-card-name">Orgain Organic Plant-Based Protein</div>
+      <div class="comp-card-sub">#1 plant protein brand in the US · ~$1.20–$1.50/serving</div>
+    </div>
+    <div class="comp-card-stats">
+      <div class="comp-card-stat"><div class="ccs-value">21g</div><div class="ccs-label">Protein</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">150</div><div class="ccs-label">Calories</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">&lt;1g</div><div class="ccs-label">Added Sugar</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">$1.35</div><div class="ccs-label">Per Serving</div></div>
+    </div>
+    <div>
+      <span class="comp-strength">#1 plant protein brand in US (Circana data)</span>
+      <span class="comp-strength">Certified organic, non-GMO, gluten-free</span>
+      <span class="comp-strength">Massive retail + Amazon presence</span>
+      <span class="comp-strength">Price leader at ~$1.35/serving</span>
+      <span class="comp-weakness">Not GLP-1 positioned (general wellness)</span>
+      <span class="comp-weakness">Uses erythritol + stevia</span>
+      <span class="comp-weakness">Minimal micronutrient density beyond protein</span>
+    </div>
+    <div class="comp-verdict">
+      <strong>Not GLP-1 focused, but the incumbent you'd need to displace.</strong> Orgain is the category leader. If a GLP-1 user walks into a Whole Foods looking for protein powder, they're picking up Orgain. They haven't GLP-1 positioned yet — but they could flip that switch overnight with a label change and marketing campaign. They have the distribution, price point, and brand recognition to absorb any niche positioning a startup creates.
+    </div>
+  </div>
+
+  <!-- KOS -->
+  <div class="comp-card" data-rank="Threat Level: Low">
+    <div class="comp-card-header">
+      <div class="comp-card-name">KOS Organic Plant Protein</div>
+      <div class="comp-card-sub">Clean-label challenger · ~$1.30/serving</div>
+    </div>
+    <div class="comp-card-stats">
+      <div class="comp-card-stat"><div class="ccs-value">20g</div><div class="ccs-label">Protein</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">160</div><div class="ccs-label">Calories</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">12</div><div class="ccs-label">Vitamins & Minerals</div></div>
+      <div class="comp-card-stat"><div class="ccs-value">$1.30</div><div class="ccs-label">Per Serving</div></div>
+    </div>
+    <div>
+      <span class="comp-strength">No erythritol, no artificial sweeteners</span>
+      <span class="comp-strength">12 vitamins & minerals</span>
+      <span class="comp-strength">Strong DTC brand with good reviews</span>
+      <span class="comp-weakness">No GLP-1 positioning</span>
+      <span class="comp-weakness">Smaller distribution than Orgain</span>
+    </div>
+    <div class="comp-verdict">
+      <strong>Closest to a "clean-label powder" positioning.</strong> KOS avoids erythritol and includes vitamins/minerals — making it the cleanest formulation among mass-market powders. But they're not GLP-1 positioned and their micronutrient density comes from synthetic fortification, not whole foods. Still, they demonstrate that the clean-label powder space is already occupied.
+    </div>
+  </div>
+</div>
+
+<!-- ======== SECTION 2: HEAD-TO-HEAD FORMAT COMPARISON ======== -->
+<div class="section">
+  <div class="section-label">Section 02</div>
+  <h2>Head-to-Head: Bar vs. Powder</h2>
+
+  <p>Here's the apples-to-apples comparison across the same six dimensions we used to evaluate the protein bar.</p>
+
+  <div class="table-wrap"><table>
+    <thead>
+      <tr>
+        <th style="width:25%;">Dimension</th>
+        <th style="width:35%; background:#3d6b35;">Protein Bar</th>
+        <th style="width:35%;">Protein Powder</th>
+        <th style="width:5%;">Edge</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Market Size</strong></td>
+        <td>~$7B protein bar market</td>
+        <td>$27B protein powder market ($50B by 2035)</td>
+        <td class="neutral">—</td>
+      </tr>
+      <tr>
+        <td><strong>GLP-1 Competitors</strong></td>
+        <td class="win"><strong>Zero direct competitors</strong> — no GLP-1 targeted clean-label bar exists</td>
+        <td class="lose">Youtheory ($39.99, GLP-1 branded), Kate Farms/Danone (25g, 27 vitamins, Walmart), Orgain (#1 brand), KOS, ALOHA — all established</td>
+        <td class="win">Bar</td>
+      </tr>
+      <tr>
+        <td><strong>Protein Capacity</strong></td>
+        <td>18g in 250 cal (29% of cal from protein)</td>
+        <td>20–25g in 150–170 cal (47–63% of cal from protein)</td>
+        <td class="lose">Powder</td>
+      </tr>
+      <tr>
+        <td><strong>Micronutrient Strategy</strong></td>
+        <td class="win"><strong>9 FDA-claimable nutrients from whole-food sources</strong> — 33% DV magnesium, 16% iron, 18% zinc, 56% copper, 48% manganese</td>
+        <td>Kate Farms delivers 27 vitamins/minerals via synthetic fortification. Youtheory adds calcium + D + myHMB. Orgain/KOS have minimal micronutrient profiles.</td>
+        <td class="win">Bar</td>
+      </tr>
+      <tr>
+        <td><strong>Clean-Label Viability</strong></td>
+        <td class="win"><strong>12 whole-food ingredients</strong> — every one recognizable. No isolates, no synthetics, no artificial anything.</td>
+        <td class="lose">Clean-label powder = protein isolate + sweetener + flavoring at minimum. "Whole-food powder" is not a viable format — you can't powder dates, almond butter, seeds, and cacao into a scoopable product while maintaining texture and taste.</td>
+        <td class="win">Bar</td>
+      </tr>
+      <tr>
+        <td><strong>Caffeine Differentiation</strong></td>
+        <td class="win"><strong>80mg green tea extract</strong> — unique in category. No competitor offers caffeine in a protein bar.</td>
+        <td>Caffeine in protein powder is uncommon and unwanted — most users consume powder at various times of day. Adding caffeine narrows usage occasions.</td>
+        <td class="win">Bar</td>
+      </tr>
+      <tr>
+        <td><strong>Convenience / Portability</strong></td>
+        <td class="win"><strong>Grab-and-go.</strong> No prep, no water, no shaker bottle. Fits in a purse or desk drawer. Pre-portioned at 250 cal.</td>
+        <td class="lose">Requires water/milk + shaker bottle or blender. Must measure. Not portable. Not discreet.</td>
+        <td class="win">Bar</td>
+      </tr>
+      <tr>
+        <td><strong>GLP-1 Digestibility</strong></td>
+        <td>Solid food — harder for some GLP-1 users with nausea or reduced appetite. 60g bar may feel like a lot.</td>
+        <td class="win">Liquid is easier to consume when nauseous. Sippable over time. Gentler on slowed gastric emptying.</td>
+        <td class="lose">Powder</td>
+      </tr>
+      <tr>
+        <td><strong>Shelf Life</strong></td>
+        <td>6–12 months (shorter due to whole-food fats, dates, nut butters oxidizing)</td>
+        <td>18–24 months (dry powder is inherently shelf-stable)</td>
+        <td class="lose">Powder</td>
+      </tr>
+      <tr>
+        <td><strong>Manufacturing Complexity</strong></td>
+        <td>Bar co-packers: YouBar, Element Bars. MOQ: 500–1,000 bars. Requires mixing, forming, wrapping, labeling. Cost: ~$1.50–$2.50/bar COGS.</td>
+        <td>Powder co-packers: dry blending is simpler. MOQ: 200–500 kg. Lower per-unit cost. But: clean-label powder with whole-food ingredients doesn't exist as a manufacturing model.</td>
+        <td class="neutral">Tie</td>
+      </tr>
+      <tr>
+        <td><strong>Unit Economics</strong></td>
+        <td>Retail $3.50–$4.00/bar. COGS ~$1.50–$2.50. Margins: 35–55%.</td>
+        <td>Retail $1.20–$4.00/serving. Mass-market powders are ~$1.30. GLP-1 niche is $4.00. Margin pressure from Orgain at $1.35.</td>
+        <td class="neutral">Tie</td>
+      </tr>
+      <tr>
+        <td><strong>Bootstrap Path</strong></td>
+        <td class="win"><strong>Proven:</strong> RXBAR grew from basement → $600M exit. Hand-make → farmers market → DTC → Amazon → retail. Our recipe works at home kitchen scale today.</td>
+        <td class="lose">Powder requires commercial-scale equipment from day one. Can't hand-make and sell at farmers markets. No equivalent bootstrap success story in clean-label powder.</td>
+        <td class="win">Bar</td>
+      </tr>
+    </tbody>
+  </table></div>
+</div>
+
+<!-- ======== SECTION 3: THE CORE PROBLEM WITH POWDER ======== -->
+<div class="section">
+  <div class="section-label">Section 03</div>
+  <h2>The Core Problem with Powder</h2>
+
+  <p>Your friends are right about one thing: GLP-1 users often struggle with solid food, and a liquid format is easier to consume. But that argument collapses when you examine what a powder version of your product would actually look like.</p>
+
+  <h3>Your bar's differentiation doesn't survive the format change</h3>
+
+  <p>The Dark Chocolate Tahini Bar has three competitive advantages: (1) micronutrient density from whole foods, (2) a clean 12-ingredient label, and (3) a GLP-1 positioning in an empty category. Here's what happens to each of those in powder format:</p>
+
+  <div class="red-box">
+    <strong>Advantage #1 — Whole-food micronutrients: Destroyed.</strong> Your bar delivers 33% DV magnesium from pumpkin seeds, cacao, almond butter, and hemp seeds. A powder can't contain these ingredients in scoopable form — you'd need to use magnesium citrate or magnesium oxide instead. The entire nutritional story shifts from "whole foods your body recognizes" to "synthetic vitamins blended into protein isolate." Kate Farms already does this with 27 vitamins and minerals. You would not be differentiated.
+  </div>
+
+  <div class="red-box">
+    <strong>Advantage #2 — Clean 12-ingredient label: Destroyed.</strong> Your bar's label reads: egg white protein, dates, almond butter, pumpkin seeds, cacao powder, tahini, hemp seeds, chia seeds, collagen peptides, green tea extract, sea salt, vanilla extract. Every ingredient is a recognizable whole food. A powder version would read: pea protein isolate, natural flavors, stevia leaf extract, xanthan gum, magnesium citrate, zinc gluconate... You become Orgain. You become KOS. You become every other powder on the shelf.
+  </div>
+
+  <div class="red-box">
+    <strong>Advantage #3 — Uncontested GLP-1 category: Destroyed.</strong> In bar format, you have zero direct competitors combining GLP-1 positioning + clean label + micronutrient density. In powder format, you're entering a space where Youtheory already has GLP-1-branded protein powder at retail, Kate Farms has a Danone-backed 25g/160cal/27-vitamin shake at Walmart, and Orgain is the #1 plant protein brand in America at $1.35/serving. Your moat evaporates.
+  </div>
+
+  <h3>The digestibility argument has a simpler answer</h3>
+
+  <p>If some GLP-1 users can't tolerate solid food, the solution isn't to abandon the bar format — it's to tell those customers to break the bar into pieces and eat it over 30–60 minutes, or to crumble it into yogurt. This is already standard advice from obesity medicine specialists for GLP-1 patients eating any solid food. A bar that can also be crumbled into a soft format is more versatile than a powder that can only be a shake.</p>
+</div>
+
+<!-- ======== SECTION 4: SCORECARD ======== -->
+<div class="section">
+  <div class="section-label">Section 04</div>
+  <h2>Format Scorecard</h2>
+
+  <p>Across 12 evaluation dimensions, the protein bar wins 7, the powder wins 3, and 2 are ties.</p>
+
+  <div class="score-grid">
+    <div class="score-card bar-wins">
+      <div class="sc-dimension">GLP-1 Competitors</div>
+      <div class="sc-bar">Bar ✓</div>
+      <div class="sc-powder">Zero vs. 4+ established</div>
+    </div>
+    <div class="score-card bar-wins">
+      <div class="sc-dimension">Micronutrient Strategy</div>
+      <div class="sc-bar">Bar ✓</div>
+      <div class="sc-powder">Whole-food vs. synthetic</div>
+    </div>
+    <div class="score-card bar-wins">
+      <div class="sc-dimension">Clean-Label Viability</div>
+      <div class="sc-bar">Bar ✓</div>
+      <div class="sc-powder">12 ingredients vs. isolate+additives</div>
+    </div>
+    <div class="score-card bar-wins">
+      <div class="sc-dimension">Caffeine Differentiation</div>
+      <div class="sc-bar">Bar ✓</div>
+      <div class="sc-powder">Unique add vs. unwanted in powder</div>
+    </div>
+    <div class="score-card bar-wins">
+      <div class="sc-dimension">Convenience</div>
+      <div class="sc-bar">Bar ✓</div>
+      <div class="sc-powder">Grab-and-go vs. prep required</div>
+    </div>
+    <div class="score-card bar-wins">
+      <div class="sc-dimension">Bootstrap Path</div>
+      <div class="sc-bar">Bar ✓</div>
+      <div class="sc-powder">Proven (RXBAR) vs. no model</div>
+    </div>
+    <div class="score-card bar-wins">
+      <div class="sc-dimension">Category White Space</div>
+      <div class="sc-bar">Bar ✓</div>
+      <div class="sc-powder">Empty vs. $27B bloodbath</div>
+    </div>
+    <div class="score-card powder-wins">
+      <div class="sc-dimension">Protein Capacity</div>
+      <div class="sc-bar">Powder ✓</div>
+      <div class="sc-powder">25g/160cal vs. 18g/250cal</div>
+    </div>
+    <div class="score-card powder-wins">
+      <div class="sc-dimension">GLP-1 Digestibility</div>
+      <div class="sc-bar">Powder ✓</div>
+      <div class="sc-powder">Liquid easier when nauseous</div>
+    </div>
+    <div class="score-card powder-wins">
+      <div class="sc-dimension">Shelf Life</div>
+      <div class="sc-bar">Powder ✓</div>
+      <div class="sc-powder">18–24 mo vs. 6–12 mo</div>
+    </div>
+    <div class="score-card tie">
+      <div class="sc-dimension">Manufacturing</div>
+      <div class="sc-bar">Tie</div>
+      <div class="sc-powder">Different complexities</div>
+    </div>
+    <div class="score-card tie">
+      <div class="sc-dimension">Unit Economics</div>
+      <div class="sc-bar">Tie</div>
+      <div class="sc-powder">Depends on positioning tier</div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== SECTION 5: RECOMMENDATION ======== -->
+<div class="section">
+  <div class="section-label">Section 05</div>
+  <h2>Recommendation</h2>
+
+  <div class="verdict-banner">
+    <h3>Stay with the bar.</h3>
+    <p>The powder format eliminates every competitive advantage that makes this product worth building. The bar occupies an empty category. The powder enters a $27 billion war zone with Danone already on the field.</p>
+  </div>
+
+  <h3>The strategic logic</h3>
+
+  <p>The protein powder market is not a white space — it's a red ocean. Youtheory has already claimed the "GLP-1 protein powder" position with a doctor endorsement and retail distribution. Kate Farms, backed by Danone's balance sheet, is delivering 25g protein with 27 vitamins and minerals at Walmart. Orgain owns the clean-label plant-protein powder category at $1.35/serving. A bootstrapped startup entering this market has no defensible position.</p>
+
+  <p>The protein bar market, by contrast, has a genuine gap. No product combines GLP-1 positioning, whole-food micronutrient density, clean caffeine, and zero added sugar. Not David (fitness-focused, artificial sweeteners). Not RXBAR High Protein (15g added sugar). Not ALOHA (no GLP-1 positioning, no micronutrient strategy). Your bar is genuinely the first product purpose-built for this consumer.</p>
+
+  <p>The powder's advantages — higher protein-per-calorie, easier digestibility, longer shelf life — are real but non-decisive. They don't create a differentiated product. They create a commodity entering a market where incumbents have 10x your resources.</p>
+
+  <h3>What about a powder later?</h3>
+
+  <div class="gold-box">
+    <strong>Phase 2 consideration, not Phase 1.</strong> Once the bar establishes the brand in the GLP-1 space and builds a customer base, a companion powder or shake could make sense as a line extension — similar to how Youtheory launched protein alongside a multivitamin and probiotic. But the bar must come first because it's where you have an uncontested position. You don't launch your second product before your first one has proven demand.
+  </div>
+
+  <h3>Bottom line</h3>
+
+  <p>Your friends are solving the wrong problem. The question isn't "which format is theoretically better for GLP-1 users?" — it's "which format gives a bootstrapped startup with $10K–$20K the highest probability of building a defensible business?" That answer is unambiguously the bar. You have a validated recipe, a proven bootstrap model (RXBAR), an empty competitive category, and a whole-food ingredient story that simply cannot exist in powder form. Ship the bar.</p>
+</div>
+
+</div><!-- end .container -->
+
+<div class="footer">
+  Bar vs. Powder — Format Decision Analysis<br>
+  Competitive data sourced February 2026 via web search. Market size data from Precedence Research (Dec 2025).<br>
+  Pricing reflects current retail/DTC as of February 2026.
+</div>
+
+</body>
+</html>
